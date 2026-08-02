@@ -112,6 +112,74 @@ async function renderLeaderboard() {
     </table>`;
 }
 
+/* ---------- Статистика ---------- */
+async function renderStats() {
+  const [archive, quiz, leaderboard, manualStats] = await Promise.all([
+    loadJSON('data/archive.json'),
+    loadJSON('data/quiz.json'),
+    loadJSON('data/leaderboard.json'),
+    loadJSON('data/stats.json')
+  ]);
+
+  const totalMeetings = archive.meetings.length + 1; // +1 за поточну
+  const totalQuestions = leaderboard.rounds.length * quiz.questions.length;
+  const totalPoints = leaderboard.rounds.reduce(
+    (sum, r) => sum + r.scores.reduce((a, b) => a + b, 0), 0
+  );
+
+  const autoCards = [
+    { label: 'Зустрічей проведено', value: totalMeetings },
+    { label: 'Учасників клубу', value: leaderboard.participants.length },
+    { label: 'Питань у вікторинах', value: totalQuestions },
+    { label: 'Балів набрано разом', value: totalPoints }
+  ];
+
+  const allCards = [...autoCards, ...manualStats.manual];
+
+  const box = document.getElementById('stats-content');
+  box.innerHTML = allCards.map(c => `
+    <div class="stat-card">
+      <div class="stat-value">${c.value}</div>
+      <div class="stat-label">${c.label}</div>
+    </div>`).join('');
+}
+
+/* ---------- Постаті (карусель) ---------- */
+async function renderFigures() {
+  const data = await loadJSON('data/figures.json');
+  const track = document.getElementById('figures-content');
+  const dotsBox = document.getElementById('figures-dots');
+  let current = 0;
+
+  track.innerHTML = data.figures.map(f => `
+    <div class="figure-card accent-${f.accent}">
+      <div class="figure-avatar">${f.initials}</div>
+      <h3>${f.name}</h3>
+      <div class="figure-years">${f.years} · ${f.category}</div>
+      <p class="figure-note">${f.note}</p>
+      ${f.quote ? `<p class="figure-quote">«${f.quote}»</p>` : ''}
+    </div>`).join('');
+
+  dotsBox.innerHTML = data.figures.map((_, i) =>
+    `<button class="dot" data-i="${i}" aria-label="Постать ${i + 1}"></button>`
+  ).join('');
+
+  const cards = track.querySelectorAll('.figure-card');
+  const dots = dotsBox.querySelectorAll('.dot');
+
+  function show(i) {
+    current = (i + data.figures.length) % data.figures.length;
+    cards.forEach((c, idx) => c.classList.toggle('active', idx === current));
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+  }
+
+  dots.forEach(d => d.addEventListener('click', () => show(parseInt(d.dataset.i, 10))));
+  document.getElementById('fig-prev').addEventListener('click', () => show(current - 1));
+  document.getElementById('fig-next').addEventListener('click', () => show(current + 1));
+
+  show(0);
+}
+
 /* ---------- Матеріали ---------- */
 async function renderMaterials() {
   const data = await loadJSON('data/materials.json');
@@ -134,7 +202,9 @@ async function renderMaterials() {
 /* ---------- Init ---------- */
 window.addEventListener('DOMContentLoaded', () => {
   renderTopic().catch(e => console.error(e));
+  renderStats().catch(e => console.error(e));
   renderQuiz().catch(e => console.error(e));
+  renderFigures().catch(e => console.error(e));
   renderArchive().catch(e => console.error(e));
   renderLeaderboard().catch(e => console.error(e));
   renderMaterials().catch(e => console.error(e));

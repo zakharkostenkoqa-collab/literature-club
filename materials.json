@@ -1,0 +1,19 @@
+{
+  "hostNote": "Групи та посилання можна вільно додавати/видаляти (data/materials.json).",
+  "groups": [
+    {
+      "heading": "Перед зустріччю",
+      "items": [
+        { "label": "Ю. Лавріненко — «Розстріляне відродження» (вступна стаття)", "link": "https://example.com/material-1" },
+        { "label": "Хронологія ВАПЛІТЕ", "link": "https://example.com/material-2" }
+      ]
+    },
+    {
+      "heading": "Додатково, якщо є час",
+      "items": [
+        { "label": "Документальний фільм про Розстріляне відродження", "link": "https://example.com/material-3" },
+        { "label": "Подкаст про М. Хвильового", "link": "https://example.com/material-4" }
+      ]
+    }
+  ]
+}
