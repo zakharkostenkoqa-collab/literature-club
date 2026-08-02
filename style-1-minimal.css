@@ -254,21 +254,43 @@ button.reset-btn:hover { opacity: 0.75; }
 @media (max-width: 700px) { .timeline-h-item { flex: 0 0 150px; } }
 
 /* ---------- Footer (emblem images) ---------- */
-footer { border-top: 1px solid var(--ink); padding: 50px 0; background: var(--paper-dark); }
+footer { border-top: 1px solid var(--ink); padding: 36px 0; background: var(--paper-dark); }
+.emblem-footer-label {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #999;
+  margin-bottom: 18px;
+  text-align: center;
+}
 .emblem-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
-.emblem-slot { flex: 1 1 0; display: flex; align-items: center; justify-content: center; }
-.emblem-icon { width: 64px; height: 64px; object-fit: contain; }
+.emblem-slot {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  padding: 14px;
+}
+.emblem-icon {
+  width: 84px; height: 84px; object-fit: contain;
+  mix-blend-mode: multiply;
+}
 @media (max-width: 700px) {
-  .emblem-icon { width: 48px; height: 48px; }
+  .emblem-icon { width: 60px; height: 60px; }
+  .emblem-slot { padding: 10px; }
 }
 @media (max-width: 420px) {
-  .emblem-icon { width: 40px; height: 40px; }
+  .emblem-icon { width: 46px; height: 46px; }
   .emblem-footer { gap: 8px; }
+  .emblem-slot { padding: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
