@@ -2,22 +2,16 @@
   "hostNote": "Додавайте новий запис зверху списку після кожної зустрічі (data/archive.json).",
   "meetings": [
     {
-      "number": 11,
-      "date": "2026-07-11",
-      "title": "Іван Котляревський і народження нової української мови",
-      "link": "https://example.com/zoom-recording-11"
+      "number": 1,
+      "date": "2026-01-08",
+      "title": "Презентація «Тигролови» (PDF)",
+      "link": "presentations/tygrolovy.pdf"
     },
     {
-      "number": 10,
-      "date": "2026-06-13",
-      "title": "Козацькі літописи: між хронікою та міфом",
-      "link": "https://example.com/zoom-recording-10"
-    },
-    {
-      "number": 9,
-      "date": "2026-05-09",
-      "title": "Голодомор в українській літературі свідчень",
-      "link": "https://example.com/zoom-recording-9"
+      "number": 2,
+      "date": "2026-01-09",
+      "title": "Валеріан Підмогильний/Місто (to be continued)",
+      "link": "https://ххх"
     }
   ]
 }
