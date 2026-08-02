@@ -31,9 +31,9 @@ body {
 a { color: var(--index-blue); }
 
 .wrap {
-  max-width: 880px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 22px;
+  padding: 0 32px;
 }
 
 /* ---------- Drawer tab navigation ---------- */
@@ -277,6 +277,12 @@ section .section-num {
 .card .subtitle { color: var(--index-blue); font-weight: 700; margin: 0 0 12px; }
 
 /* ---------- Quiz ---------- */
+#quiz-content, #quiz-result, #quiz-reset {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 .quiz-progress {
   font-family: 'PT Mono', monospace;
   font-size: 12px;
