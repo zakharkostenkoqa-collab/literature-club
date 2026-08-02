@@ -74,7 +74,7 @@ header.masthead {
   overflow: hidden;
   background-image:
     linear-gradient(100deg, var(--paper) 35%, rgba(232,225,206,0.55) 65%, rgba(232,225,206,0.15) 100%),
-    url('assets/flag-map-ukraine.webp');
+    url('assets/960px-Flag_map_of_Ukraine.svg.webp');
   background-repeat: no-repeat;
   background-position: left top, right -10% top -15%;
   background-size: 100% 100%, 480px auto;
