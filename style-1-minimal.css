@@ -1,5 +1,5 @@
 /* ВАРІАНТ 1 — Мінімалізм: багато повітря, велика жирна типографіка, чорно-біле + єдиний національний акцент */
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700;800&family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700;800&family=PT+Serif:ital@1&family=PT+Mono&display=swap');
 
 :root {
   --paper: #fafaf7;
@@ -254,16 +254,16 @@ button.reset-btn:hover { opacity: 0.75; }
 @media (max-width: 700px) { .timeline-h-item { flex: 0 0 150px; } }
 
 /* ---------- Footer (emblem images) ---------- */
-footer { border-top: 1px solid var(--ink); padding: 36px 0; background: var(--paper-dark); }
-.emblem-footer-label {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #999;
-  margin-bottom: 18px;
+footer { border-top: none; padding: 48px 0 40px; background: var(--paper-dark); }
+.footer-quote {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--ink);
   text-align: center;
+  margin: 0 0 28px;
+  letter-spacing: 0.005em;
 }
 .emblem-footer {
   display: flex;
