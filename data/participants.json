@@ -1,9 +1,9 @@
 {
   "hostNote": "Учасники клубу (data/participants.json). Поле 'photo' — шлях до фото, яке ви завантажите в assets/participants/ (наприклад assets/participants/name.jpg). Якщо фото ще нема — залиште порожнім, покаже кольоровий медальйон з ініціалами замість фото.",
   "members": [
-    { "name": "Андрій", "assets/participants/Andy.jpg", "favorite": "" },
-    { "name": "Аня", "assets/participants/Ann.jpg", "favorite": "" },
-    { "name": "Дарина", "assets/participants/Daryna.jpg", "favorite": "" },
-    { "name": "Захар", "assets/participants/Zakhar.jpg", "favorite": "" }
+    { "name": "Андрій", "photo": "assets/participants/Andy.jpg", "favorite": "" },
+    { "name": "Аня", "photo": "assets/participants/Ann.jpg", "favorite": "" },
+    { "name": "Дарина", "photo": "assets/participants/Daryna.jpg", "favorite": "" },
+    { "name": "Захар", "photo": "assets/participants/Zakhar.jpg", "favorite": "" }
   ]
 }
