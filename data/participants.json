@@ -1,9 +1,9 @@
 {
-  "hostNote": "Учасники клубу (data/participants.json). Поле 'photo' — шлях до фото, яке ви завантажите в assets/participants/ (наприклад assets/participants/name.jpg). Якщо фото ще нема — залиште порожнім, покаже кольоровий медальйон з ініціалами замість фото.",
+  "hostNote": "Учасники клубу (data/participants.json). Поле 'photo' — шлях до фото в assets/participants/. Поле 'rating' — особистий рейтинг учасника (сума балів/шагів за всі пройдені вікторини), оновлюйте вручну щоразу, як учасник повідомляє результат.",
   "members": [
-    { "name": "Андрій", "photo": "assets/participants/Andy.jpg", "favorite": "" },
-    { "name": "Аня", "photo": "assets/participants/Ann.jpg", "favorite": "" },
-    { "name": "Дарина", "photo": "assets/participants/Daryna.jpg", "favorite": "" },
-    { "name": "Захар", "photo": "assets/participants/Zakhar.jpg", "favorite": "" }
+    { "name": "Андрій", "photo": "assets/participants/Andy.jpg", "favorite": "", "rating": 0 },
+    { "name": "Аня", "photo": "assets/participants/Ann.jpg", "favorite": "", "rating": 0 },
+    { "name": "Дарина", "photo": "assets/participants/Daryna.jpg", "favorite": "", "rating": 0 },
+    { "name": "Захар", "photo": "assets/participants/Zakhar.jpg", "favorite": "", "rating": 0 }
   ]
 }
