@@ -254,7 +254,7 @@ button.reset-btn:hover { opacity: 0.75; }
 @media (max-width: 700px) { .timeline-h-item { flex: 0 0 150px; } }
 
 /* ---------- Footer (emblem images) ---------- */
-footer { border-top: none; padding: 48px 0 40px; background: var(--paper-dark); }
+footer { border-top: none; padding: 28px 0 40px; background: var(--paper-dark); }
 .footer-quote {
   font-family: 'PT Serif', serif;
   font-style: italic;
