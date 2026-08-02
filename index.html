@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Клуб української історії та літератури</title>
+<link rel="stylesheet" href="style-1-minimal.css">
+</head>
+<body>
+
+<nav class="tabs">
+  <div class="wrap">
+    <a href="#timeline">Хронологія</a>
+    <a href="#figures">Відомі українці</a>
+    <a href="#quiz">Перевірка на тигролова</a>
+    <a href="#next-topic">Наступна тема</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="flag-ribbon" aria-hidden="true"></div>
+  <div class="wrap header-grid">
+    <div class="header-side header-participants-block">
+      <div class="header-side-label">Учасники клубу</div>
+      <div class="header-participants" id="header-participants"><p class="mini-loading">…</p></div>
+    </div>
+    <div class="header-center">
+      <div class="kicker">Щомісячний клуб · чотири голоси</div>
+      <h1>Українська історія і література</h1>
+    </div>
+    <div class="header-side header-stats-block">
+      <div class="header-side-label">Статистика клубу</div>
+      <div class="header-stats" id="header-stats"><p class="mini-loading">…</p></div>
+    </div>
+  </div>
+</header>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<section id="timeline">
+  <div class="wrap">
+    <span class="section-num">01</span>
+    <h2>Хронологія</h2>
+    <div id="timeline-content" class="timeline-h"><p>Завантаження…</p></div>
+  </div>
+</section>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<section id="figures">
+  <div class="wrap">
+    <span class="section-num">02</span>
+    <h2>Відомі українці</h2>
+    <p class="section-lead">Письменники, дисиденти та культурні діячі, чиї голоси варто пам'ятати.</p>
+    <div class="carousel">
+      <button class="carousel-btn prev" id="fig-prev" type="button" aria-label="Попередня постать">‹</button>
+      <div id="figures-content" class="carousel-track"><p>Завантаження…</p></div>
+      <button class="carousel-btn next" id="fig-next" type="button" aria-label="Наступна постать">›</button>
+    </div>
+    <div id="figures-dots" class="carousel-dots"></div>
+  </div>
+</section>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<section id="quiz">
+  <div class="wrap">
+    <span class="section-num">03</span>
+    <h2>Перевірка на тигролова</h2>
+    <p class="section-lead">12 питань за романом Івана Багряного. Кожна правильна відповідь — 8 кроків.</p>
+    <div id="quiz-content"><p>Завантаження…</p></div>
+    <div id="quiz-result"></div>
+    <button id="quiz-reset" class="reset-btn" type="button">Пройти ще раз</button>
+  </div>
+</section>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<section id="next-topic">
+  <div class="wrap">
+    <span class="section-num">04</span>
+    <h2>Тема наступної зустрічі</h2>
+    <div id="next-topic-content"><p>Завантаження…</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="emblem-footer">
+      <div class="emblem-slot">
+        <svg viewBox="0 0 100 100" class="emblem-icon" aria-hidden="true">
+          <path d="M50 90 V45 M50 45 C50 20 50 10 50 5 M50 45 C35 45 30 30 30 10 M50 45 C65 45 70 30 70 10 M35 55 H65" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="emblem-caption">Тризуб</span>
+      </div>
+      <div class="emblem-slot">
+        <svg viewBox="0 0 100 100" class="emblem-icon" aria-hidden="true">
+          <circle cx="50" cy="25" r="16" fill="none" stroke="currentColor" stroke-width="6"/>
+          <path d="M50 41 V90 M38 90 H62" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="emblem-caption">Булава</span>
+      </div>
+      <div class="emblem-slot">
+        <svg viewBox="0 0 100 100" class="emblem-icon" aria-hidden="true">
+          <path d="M50 25 C40 18 25 18 15 22 V75 C25 71 40 71 50 78 C60 71 75 71 85 75 V22 C75 18 60 18 50 25 Z" fill="none" stroke="currentColor" stroke-width="5"/>
+          <path d="M50 25 V78" fill="none" stroke="currentColor" stroke-width="4"/>
+        </svg>
+        <span class="emblem-caption">Літературне коло</span>
+      </div>
+      <div class="emblem-slot emblem-slot-empty">
+        <span class="emblem-reserved">+ місце під власний герб/емблему</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
