@@ -153,10 +153,11 @@ section .section-num {
 }
 .card + .card { margin-top: 18px; }
 .stamp {
-  position: absolute; top: 24px; right: 24px;
+  display: inline-block;
   border: 1px solid var(--ink); color: var(--ink);
   font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11px;
-  letter-spacing: 0.1em; padding: 5px 12px; transform: none; border-radius: 0; background: none;
+  letter-spacing: 0.1em; padding: 5px 12px; border-radius: 0; background: none;
+  margin-bottom: 14px;
 }
 .stamp-next { border-color: var(--index-blue); color: var(--index-blue); }
 .card-next-empty { display: flex; align-items: center; min-height: 90px; }
