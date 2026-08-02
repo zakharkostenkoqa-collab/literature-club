@@ -30,10 +30,13 @@ a { color: var(--index-blue); }
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 
 /* ---------- Nav ---------- */
+.sticky-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
 nav.tabs {
-  position: sticky; top: 0; z-index: 20;
   background: var(--ink);
-  border-bottom: none;
 }
 nav.tabs .wrap { display: flex; gap: 2px; overflow-x: auto; }
 nav.tabs a {
@@ -52,15 +55,16 @@ nav.tabs a {
 }
 nav.tabs a:hover { opacity: 0.55; }
 
+.flag-ribbon {
+  height: 4px;
+  background: linear-gradient(90deg, var(--flag-blue) 50%, var(--flag-yellow) 50%);
+}
+
 /* ---------- Header ---------- */
 header.masthead {
   padding: 70px 0 50px;
   border-bottom: 1px solid var(--ink);
   position: relative;
-}
-.flag-ribbon {
-  position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, var(--flag-blue) 50%, var(--flag-yellow) 50%);
 }
 .header-grid {
   display: grid;
@@ -252,16 +256,19 @@ button.reset-btn:hover { opacity: 0.75; }
 /* ---------- Footer (emblem images) ---------- */
 footer { border-top: 1px solid var(--ink); padding: 50px 0; background: var(--paper-dark); }
 .emblem-footer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-items: center;
+  gap: 12px;
 }
-.emblem-slot { display: flex; align-items: center; justify-content: center; }
+.emblem-slot { flex: 1 1 0; display: flex; align-items: center; justify-content: center; }
 .emblem-icon { width: 64px; height: 64px; object-fit: contain; }
 @media (max-width: 700px) {
-  .emblem-footer { grid-template-columns: repeat(2, 1fr); }
+  .emblem-icon { width: 48px; height: 48px; }
+}
+@media (max-width: 420px) {
+  .emblem-icon { width: 40px; height: 40px; }
+  .emblem-footer { gap: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
