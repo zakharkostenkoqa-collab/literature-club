@@ -2,353 +2,265 @@
 <html><head><meta charset="UTF-8">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#f5f0e4;font-family:sans-serif}
-.wrap{max-width:1200px;margin:0 auto}
-.title{text-align:center;font-size:14px;font-weight:600;color:#111;padding:10px 0 2px}
-.sub{text-align:center;font-size:11px;color:#777;padding-bottom:6px}
-svg{width:100%;display:block}
-.legend{display:flex;flex-wrap:wrap;gap:5px 18px;justify-content:center;padding:8px 12px 10px;border-top:1px solid #ddd}
-.li{display:flex;align-items:center;gap:5px;font-size:10.5px;color:#222}
-.sw{width:14px;height:14px;border-radius:2px;flex-shrink:0}
-.ld{width:22px;height:3px;border-radius:1px;flex-shrink:0}
-.note{text-align:center;font-size:9px;color:#999;padding:3px 12px 10px;font-style:italic}
+body{background:#e8e0cc;font-family:'Segoe UI',sans-serif}
+.map{position:relative;width:100%;padding-bottom:72%;overflow:hidden;background:#d4c8a8}
+.map-inner{position:absolute;inset:0}
+
+/* Підписи назв сучасних країн */
+.mod{position:absolute;font-size:1.1vw;color:#7a6830;font-weight:600;opacity:0.45;pointer-events:none}
+
+/* Моря */
+.sea{position:absolute;background:rgba(80,148,200,0.55);border:1.5px solid rgba(40,100,160,0.5);border-radius:40%;display:flex;align-items:center;justify-content:center;font-size:1vw;font-style:italic;color:#1a4a6a;font-weight:500;text-align:center}
+
+/* Держави і племена — hexagon-like ellipses */
+.blob{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
+.blob-title{font-weight:700;line-height:1.15}
+.blob-sub{font-size:.75vw;opacity:.75;margin-top:1px;line-height:1.2}
+
+.compass{position:absolute;right:1%;top:1%;width:4%;background:rgba(255,255,255,.85);border-radius:50%;border:1px solid #aaa;display:flex;align-items:center;justify-content:center;flex-direction:column;aspect-ratio:1;font-size:.8vw;font-weight:700;color:#333}
+.map-title{position:absolute;top:.5%;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.82);padding:.3% 1.2%;border-radius:4px;font-size:1.2vw;font-weight:600;color:#111;white-space:nowrap}
+.map-sub{position:absolute;top:4%;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.65);padding:.2% .8%;border-radius:3px;font-size:.85vw;color:#555;white-space:nowrap}
+
+.legend{position:absolute;bottom:1%;left:.5%;background:rgba(255,255,255,.82);border-radius:6px;padding:.5% .8%;font-size:.8vw;color:#333}
+.lr{display:flex;align-items:center;gap:4px;margin-bottom:2px}
+.ld{width:1.2vw;height:1.2vw;border-radius:50%;flex-shrink:0}
+.ldash{width:1.8vw;height:0;border-top:2px dashed #1a5a9a;flex-shrink:0}
+.ldash-r{width:1.8vw;height:0;border-top:2px dashed #a02818;flex-shrink:0}
+
+/* SVG абсолютно поверх */
+.overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div class="title">Блок 0 · Язичницька Русь і варяги (IX–X ст.) — виправлена карта</div>
-<div class="sub">Племінні союзи та сусідні держави на тлі сучасних кордонів</div>
-<svg viewBox="0 0 1000 820" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</marker>
-</defs>
+<div class="map">
+<div class="map-inner">
 
-<!-- OCEAN -->
-<rect width="1000" height="820" fill="#b0cfe0" rx="4"/>
-<path fill="#e2dbc0" stroke="#a09070" stroke-width="0.6" d="M 0 0 L 1000 0 L 1000 820 L 0 820 Z"/>
-
-<!-- БАЛТІЙСЬКЕ МОРЕ -->
-<path fill="#b0cfe0" stroke="#6a9ab5" stroke-width="0.6" d="M 275 0 L 395 0 L 415 28 L 420 58 L 405 88 L 385 106 L 358 114 L 330 108 L 310 88 L 298 65 L 295 40 Z"/>
-<path fill="#b0cfe0" d="M 395 0 L 520 0 L 532 22 L 510 42 L 478 50 L 448 44 L 420 28 Z"/>
-<!-- БІЛЕ МОРЕ -->
-<path fill="#b0cfe0" stroke="#5a8aaa" stroke-width="0.5" d="M 645 0 L 715 0 L 728 32 L 715 55 L 692 62 L 668 52 L 650 30 Z"/>
-
-<!-- ЧОРНЕ МОРЕ — правильніше: між 41-46°N, між Дунаєм і Кавказом -->
-<!-- Київ ≈ (494,310). Чорне море приблизно 250км на південь від Переяслава -->
-<!-- тобто ~y=560-610 на нашому масштабі -->
-<path fill="#88b8d0" stroke="#4a88aa" stroke-width="1" d="
-M 422 560 L 465 542 L 520 530 L 578 526 L 632 528 L 672 538
-L 700 555 L 708 575 L 698 595 L 672 610 L 635 618 L 592 620
-L 548 618 L 508 608 L 472 592 L 440 575 Z"/>
-
-<!-- АЗОВСЬКЕ МОРЕ (Меотіда) -->
-<path fill="#88b8d0" stroke="#4a88aa" stroke-width="0.7" d="
-M 700 540 L 728 528 L 752 530 L 768 545 L 765 562 L 748 575
-L 728 578 L 708 570 L 700 555 Z"/>
-
-<!-- КАСПІЙСЬКЕ МОРЕ -->
-<path fill="#88b8d0" stroke="#4a88aa" stroke-width="0.6" d="
-M 878 290 L 898 305 L 910 332 L 908 362 L 892 385 L 872 395
-L 852 388 L 840 368 L 836 340 L 840 312 L 855 298 Z"/>
-
-<!-- СЕРЕДЗЕМНЕ МОРЕ (далеко на півдні) -->
-<path fill="#88b8d0" d="M 0 770 L 250 748 L 380 742 L 460 748 L 510 762 L 495 790 L 350 800 L 150 800 L 0 795 Z"/>
-<!-- АДРІАТИКА -->
-<path fill="#88b8d0" d="M 305 668 L 338 655 L 362 660 L 372 682 L 362 702 L 338 710 L 312 702 L 298 682 Z"/>
-<!-- МАРМУРОВЕ МОРЕ / ПРОТОКА -->
-<path fill="#88b8d0" stroke="#4a88aa" stroke-width="0.5" d="M 488 635 L 510 628 L 530 632 L 538 645 L 528 660 L 508 665 L 490 658 L 482 645 Z"/>
-
-<!-- СУХОДІЛ — СИЛУЕТИ КРАЇН -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 218 0 L 275 0 L 298 40 L 310 75 L 318 108 L 308 132 L 290 148 L 268 155 L 248 148 L 232 130 L 222 108 L 218 82 Z"/>
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 275 0 L 395 0 L 415 28 L 420 58 L 405 88 L 385 106 L 365 118 L 345 128 L 328 138 L 310 148 L 290 148 L 268 138 L 252 120 L 248 98 L 258 72 L 268 48 Z"/>
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 395 0 L 520 0 L 532 22 L 545 48 L 548 75 L 538 98 L 518 115 L 495 122 L 472 118 L 450 105 L 432 88 L 418 68 L 412 45 Z"/>
-<!-- ПРИБАЛТИКА -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 358 114 L 420 105 L 435 122 L 435 145 L 408 155 L 380 152 L 358 138 L 345 122 Z"/>
-<!-- ЛИТВА -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 345 145 L 382 142 L 408 148 L 422 162 L 418 180 L 400 192 L 375 195 L 350 188 L 332 175 L 330 160 Z"/>
-<!-- ПОЛЬЩА -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 265 168 L 330 158 L 375 162 L 400 175 L 412 192 L 415 215 L 405 238 L 385 252 L 355 258 L 322 255 L 295 242 L 272 225 L 258 205 L 255 182 Z"/>
-<!-- ЧЕХІЯ/СЛОВАЧЧИНА -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 258 238 L 295 228 L 322 232 L 338 248 L 332 265 L 308 272 L 282 268 L 260 255 Z"/>
-<!-- УГОРЩИНА -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 295 265 L 338 255 L 370 258 L 390 272 L 388 292 L 370 305 L 342 310 L 312 305 L 292 288 L 288 272 Z"/>
-<!-- РУМУНІЯ -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 370 258 L 415 252 L 448 258 L 468 272 L 475 295 L 470 318 L 450 332 L 422 338 L 390 332 L 368 315 L 360 292 Z"/>
-<!-- МОЛДОВА -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 448 285 L 468 278 L 480 292 L 478 312 L 462 322 L 445 318 L 440 302 Z"/>
-<!-- БОЛГАРІЯ -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 408 332 L 448 320 L 485 320 L 508 335 L 508 355 L 490 372 L 460 378 L 428 372 L 408 355 L 405 342 Z"/>
-<!-- БАЛКАНИ/СЕРБІЯ -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 320 312 L 360 302 L 388 315 L 390 338 L 372 355 L 345 360 L 318 348 L 308 330 Z"/>
-<!-- ГРЕЦІЯ -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 390 372 L 425 362 L 455 362 L 470 378 L 468 402 L 450 418 L 422 425 L 395 418 L 380 400 L 382 385 Z"/>
-<!-- КРИМ — важливо! -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.8" d="M 540 510 L 568 498 L 598 500 L 618 514 L 615 530 L 598 540 L 572 542 L 545 532 Z"/>
-<!-- АНАТОЛІЯ/ТУРЕЧЧИНА -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.6" d="
-M 490 622 L 535 608 L 588 598 L 645 595 L 700 598 L 748 610
-L 782 632 L 800 658 L 795 685 L 775 702 L 742 710
-L 705 708 L 668 698 L 635 682 L 605 660 L 578 638 L 548 625 Z"/>
-<!-- КАВКАЗ -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 720 395 L 752 382 L 785 382 L 812 395 L 825 415 L 815 435 L 792 448 L 762 450 L 738 438 L 722 418 Z"/>
-<!-- БІЛОРУСЬ -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 378 175 L 420 168 L 458 172 L 492 180 L 512 200 L 515 225 L 505 248 L 482 260 L 452 265 L 420 260 L 392 245 L 372 228 L 365 205 Z"/>
-<!-- УКРАЇНА — трохи тепліша -->
-<path fill="#d8d0a8" stroke="#907848" stroke-width="0.8" d="M 415 258 L 455 252 L 495 248 L 535 248 L 572 252 L 608 260 L 638 272 L 662 290 L 678 312 L 682 338 L 672 362 L 650 380 L 620 392 L 585 398 L 548 398 L 512 390 L 480 375 L 455 355 L 438 330 L 428 305 L 418 280 Z"/>
-<!-- РОСІЯ -->
-<path fill="#ddd6b5" stroke="#b0a888" stroke-width="0.5" d="M 420 0 L 1000 0 L 1000 380 L 920 398 L 880 412 L 845 418 L 808 415 L 780 398 L 760 375 L 748 345 L 750 315 L 762 290 L 782 272 L 835 248 L 895 235 L 935 205 L 925 178 L 900 155 L 835 128 L 762 110 L 698 98 L 638 95 L 578 102 L 548 112 L 520 125 L 508 148 L 505 172 L 512 225 L 512 248 L 492 238 L 468 225 L 445 182 L 448 158 L 455 138 L 465 88 L 480 38 L 492 18 L 510 5 L 530 0 Z"/>
-<!-- КАЗАХСТАН -->
-<path fill="#d5ccaa" stroke="#a09878" stroke-width="0.5" d="M 900 238 L 1000 228 L 1000 480 L 900 455 L 862 435 L 842 415 L 848 392 L 870 378 L 928 355 L 948 315 L 938 292 L 900 270 Z"/>
-
-<!-- СУЧАСНІ КОРДОНИ — пунктир -->
-<path fill="none" stroke="#7a6030" stroke-width="2" stroke-dasharray="7 3" d="M 415 258 L 455 252 L 495 248 L 535 248 L 572 252 L 608 260 L 638 272 L 662 290 L 678 312 L 682 338 L 672 362 L 650 380 L 620 392 L 585 398 L 548 398 L 512 390 L 480 375 L 455 355 L 438 330 L 428 305 L 418 280 Z"/>
-<path fill="none" stroke="#909080" stroke-width="1.2" stroke-dasharray="5 3" d="M 265 168 L 330 158 L 375 162 L 400 175 L 412 192 L 415 215 L 405 238 L 385 252 L 355 258 L 322 255 L 295 242 L 272 225 L 258 205 Z"/>
-<path fill="none" stroke="#909080" stroke-width="1.2" stroke-dasharray="5 3" d="M 378 175 L 420 168 L 458 172 L 492 180 L 512 200 L 515 225 L 505 248 L 482 260 L 452 265 L 420 260 L 392 245 L 372 228 L 365 205 Z"/>
-<path fill="none" stroke="#909080" stroke-width="1.2" stroke-dasharray="5 3" d="M 370 258 L 415 252 L 448 258 L 468 272 L 475 295 L 470 318 L 450 332 L 422 338 L 390 332 L 368 315 L 360 292 Z"/>
-
-<!-- НАЗВИ СУЧАСНИХ КРАЇН -->
-<text x="500" y="325" text-anchor="middle" font-size="13" font-weight="600" fill="#7a6830" opacity="0.48">УКРАЇНА</text>
-<text x="432" y="215" text-anchor="middle" font-size="9" fill="#888" opacity="0.65">БІЛОРУСЬ</text>
-<text x="335" y="215" text-anchor="middle" font-size="9" fill="#888" opacity="0.65">ПОЛЬЩА</text>
-<text x="688" y="195" text-anchor="middle" font-size="10" fill="#888" opacity="0.52">РОСІЯ</text>
-<text x="480" y="78" text-anchor="middle" font-size="9" fill="#888" opacity="0.52">ФІНЛЯНДІЯ</text>
-<text x="332" y="78" text-anchor="middle" font-size="9" fill="#888" opacity="0.52">ШВЕЦІЯ</text>
-<text x="238" y="105" text-anchor="middle" font-size="8.5" fill="#888" opacity="0.52">НОРВЕГІЯ</text>
-<text x="700" y="652" text-anchor="middle" font-size="9" fill="#888" opacity="0.48">ТУРЕЧЧИНА</text>
-<text x="575" y="570" text-anchor="middle" font-size="8" fill="#888" opacity="0.48">КРИМ</text>
-
-<!-- ДНІПРО -->
-<path fill="none" stroke="#3a78a8" stroke-width="2.2" opacity="0.65" d="M 490 175 L 488 210 L 486 248 L 488 288 L 495 328 L 502 368 L 510 408 L 518 448 L 524 490 L 528 530 L 530 548"/>
-<text x="468" y="295" font-size="9" fill="#2a5888" font-style="italic" font-weight="500">Дніпро</text>
-
-<!-- ============================================================
-  ХОЗАРСЬКИЙ КАГАНАТ — ПРАВИЛЬНО:
-  Пониззя Волги і Дону (сучасні Астраханська + Ростовська обл.)
-  Столиця Ітіль — в дельті Волги (≈ Астрахань)
-  Тобто: на схід від Дону, північ Каспію
-============================================================ -->
-<path fill="rgba(210,155,30,0.28)" stroke="#b08018" stroke-width="2.8" stroke-linejoin="round" d="
-M 748 248 L 790 235 L 832 238 L 868 255 L 888 282 L 888 312
-L 872 338 L 848 355 L 820 362 L 792 355 L 768 338 L 752 312
-L 742 285 Z"/>
-<!-- Столиця Ітіль (дельта Волги) -->
-<circle cx="870" cy="325" r="6" fill="#b08018" stroke="#fff" stroke-width="1.2"/>
-<text x="885" y="322" font-size="8" fill="#704808" font-weight="600">Ітіль ★</text>
-<text x="885" y="333" font-size="7" fill="#906010">(Астрахань)</text>
-
-<!-- ============================================================
-  ВЕЛИКА МОРАВІЯ — ПРАВИЛЬНО: Моравія + Чехія + Словаччина
-  (до заходу від Карпат)
-============================================================ -->
-<path fill="rgba(70,130,55,0.22)" stroke="#3a7828" stroke-width="2" d="
-M 255 225 L 295 215 L 332 215 L 358 228 L 365 248 L 355 268
-L 330 278 L 298 278 L 268 265 L 252 248 Z"/>
-
-<!-- ============================================================
-  ПЕЧЕНІГИ — ПРАВИЛЬНО:
-  Степ від Дону до нижнього Дунаю, ПІВНІЧ Чорного моря
-  Не заходять далеко на північ — тільки до лісостепу
-  Тобто: смуга між Руссю і Чорним морем
-============================================================ -->
-<path fill="rgba(200,70,40,0.18)" stroke="#a02818" stroke-width="2.5" stroke-dasharray="9 4" d="
-M 390 398 L 435 382 L 488 368 L 542 358 L 598 352 L 648 354
-L 695 362 L 728 378 L 742 398 L 738 420 L 718 438 L 688 450
-L 648 458 L 598 458 L 548 452 L 498 442 L 450 428 L 408 412 Z"/>
-
-<!-- ВОЛЗЬКА БУЛГАРІЯ — ПРАВИЛЬНО:
-  Середня течія Волги (сучасний Татарстан)
-  ≈ (780-840, 160-200) на нашій карті
--->
-<path fill="rgba(210,175,60,0.22)" stroke="#a09030" stroke-width="2" d="
-M 760 148 L 800 135 L 840 140 L 862 158 L 858 185 L 835 202
-L 805 208 L 775 200 L 755 182 L 752 162 Z"/>
-
-<!-- ПЕРША БОЛГАРІЯ (до заходу від Чорного моря, Дунай) -->
-<path fill="rgba(60,120,80,0.20)" stroke="#285840" stroke-width="2" d="
-M 408 335 L 448 322 L 485 320 L 508 335 L 508 358 L 490 375
-L 458 380 L 425 372 L 408 352 Z"/>
-
-<!-- ============================================================
-  ПЛЕМЕНА — з правильним розміщенням
-============================================================ -->
-<!-- СЛОВЕНИ ІЛЬМЕНСЬКІ — навколо оз. Ільмень (Новгород) -->
-<path fill="rgba(140,195,90,0.22)" stroke="#3a7020" stroke-width="2.2" d="
-M 448 148 L 500 135 L 552 138 L 582 155 L 588 182 L 572 205
-L 540 218 L 505 220 L 470 210 L 448 190 L 440 168 Z"/>
-
-<!-- КРИВИЧІ — Смоленськ, Полоцьк, Псков -->
-<path fill="rgba(140,195,90,0.20)" stroke="#3a7020" stroke-width="2" d="
-M 390 205 L 438 195 L 478 198 L 498 215 L 495 242 L 472 258
-L 440 262 L 408 252 L 388 232 L 382 215 Z"/>
-
-<!-- РАДИМИЧІ — р. Сож (схід Білорусі / Брянщина) -->
-<path fill="rgba(140,195,90,0.18)" stroke="#3a7020" stroke-width="2" d="
-M 542 200 L 582 192 L 618 198 L 638 218 L 632 245 L 608 262
-L 575 265 L 545 255 L 528 235 L 528 215 Z"/>
-
-<!-- В'ЯТИЧІ — Ока (Тула, Рязань, Орел) -->
-<path fill="rgba(140,195,90,0.16)" stroke="#3a7020" stroke-width="1.8" d="
-M 628 178 L 672 168 L 715 175 L 732 198 L 722 228 L 695 245
-L 660 248 L 628 235 L 610 215 L 612 192 Z"/>
-
-<!-- СІВЕРЯНИ — Лівобережжя Дніпра (Чернігів, Переяслав) -->
-<path fill="rgba(140,195,90,0.22)" stroke="#3a7020" stroke-width="2.2" d="
-M 528 248 L 572 238 L 612 242 L 638 262 L 630 292 L 605 312
-L 570 318 L 535 308 L 515 285 L 515 262 Z"/>
-
-<!-- ПОЛЯНИ — навколо Києва -->
-<path fill="rgba(210,80,30,0.28)" stroke="#9a2808" stroke-width="3.2" stroke-linejoin="round" d="
-M 462 282 L 505 272 L 538 278 L 552 305 L 545 338 L 518 358
-L 485 362 L 455 348 L 438 318 L 438 295 Z"/>
-
-<!-- ДРЕВЛЯНИ — Полісся (Іскоростень = Коростень) -->
-<path fill="rgba(140,195,90,0.20)" stroke="#3a7020" stroke-width="2" d="
-M 375 282 L 418 272 L 452 278 L 462 302 L 455 328 L 428 342
-L 398 338 L 372 318 L 365 298 Z"/>
-
-<!-- ДУЛІБИ/ВОЛИНЯНИ — Волинь (Луцьк, Володимир-Волинський) -->
-<path fill="rgba(140,195,90,0.18)" stroke="#3a7020" stroke-width="2" d="
-M 320 262 L 362 252 L 395 258 L 408 278 L 402 302 L 375 318
-L 342 315 L 318 298 L 312 278 Z"/>
-
-<!-- БІЛІ ХОРВАТИ — Карпати (Прикарпаття) -->
-<path fill="rgba(140,195,90,0.16)" stroke="#3a7020" stroke-width="1.8" d="
-M 305 312 L 342 302 L 375 308 L 388 328 L 378 348 L 352 358
-L 322 352 L 302 332 Z"/>
-
-<!-- УЛИЧІ — Пд. Буг, Подністров'я -->
-<path fill="rgba(140,195,90,0.18)" stroke="#3a7020" stroke-width="2" d="
-M 432 355 L 475 345 L 512 350 L 528 372 L 518 398 L 490 412
-L 458 408 L 432 390 L 422 368 Z"/>
-
-<!-- ТИВЕРЦІ — Дністер до моря -->
-<path fill="rgba(140,195,90,0.16)" stroke="#3a7020" stroke-width="1.8" d="
-M 355 345 L 398 335 L 432 342 L 442 365 L 432 390 L 402 402
-L 368 398 L 345 378 L 342 358 Z"/>
-
-<!-- ДРЕГОВИЧІ — між Прип'яттю і Двіною (Білорусь) -->
-<path fill="rgba(140,195,90,0.15)" stroke="#3a7020" stroke-width="1.5" d="
-M 388 192 L 425 182 L 458 185 L 475 202 L 468 222 L 442 232
-L 412 230 L 390 215 Z"/>
-
-<!-- ============================================================
-  НАЗВИ ПЛЕМЕН
-============================================================ -->
-<text x="515" y="175" text-anchor="middle" font-size="11" font-weight="700" fill="#1a4808">СЛОВЕНИ ІЛЬМЕНСЬКІ</text>
-<text x="515" y="188" text-anchor="middle" font-size="8.5" fill="#2a6010">Новгород</text>
-<text x="438" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#1a4808">КРИВИЧІ</text>
-<text x="438" y="240" text-anchor="middle" font-size="8.5" fill="#2a6010">Смоленськ · Полоцьк</text>
-<text x="582" y="228" text-anchor="middle" font-size="10" font-weight="700" fill="#1a4808">РАДИМИЧІ</text>
-<text x="670" y="208" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a4808">В'ЯТИЧІ</text>
-<text x="432" y="205" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a4808">ДРЕГОВИЧІ</text>
-<text x="578" y="272" text-anchor="middle" font-size="11" font-weight="700" fill="#1a4808">СІВЕРЯНИ</text>
-<text x="578" y="285" text-anchor="middle" font-size="8.5" fill="#2a6010">Чернігів</text>
-<!-- ПОЛЯНИ/КИЇВ -->
-<text x="494" y="305" text-anchor="middle" font-size="12" font-weight="700" fill="#7a1205">ПОЛЯНИ</text>
-<rect x="460" y="312" width="68" height="18" rx="3" fill="#9a2808"/>
-<text x="494" y="325" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">КИЇВ ★</text>
-<text x="415" y="300" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a4808">ДРЕВЛЯНИ</text>
-<text x="360" y="280" text-anchor="middle" font-size="10" font-weight="700" fill="#1a4808">ДУЛІБИ</text>
-<text x="345" y="330" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a4808">БІЛІ ХОРВАТИ</text>
-<text x="478" y="378" text-anchor="middle" font-size="10" font-weight="700" fill="#1a4808">УЛИЧІ</text>
-<text x="390" y="368" text-anchor="middle" font-size="10" font-weight="700" fill="#1a4808">ТИВЕРЦІ</text>
-
-<!-- ============================================================
-  НАЗВИ ДЕРЖАВ
-============================================================ -->
-<text x="252" y="145" text-anchor="middle" font-size="13" font-weight="700" fill="#0e2050">ВАРЯГИ</text>
-<text x="252" y="158" text-anchor="middle" font-size="9" fill="#1a3878">Скандинавія · Балтія</text>
-
-<text x="808" y="298" text-anchor="middle" font-size="11" font-weight="700" fill="#6a3802">ХОЗАРСЬКИЙ КАГАНАТ</text>
-<text x="808" y="312" text-anchor="middle" font-size="8.5" fill="#8a5010">пониззя Волги і Дону</text>
-
-<text x="562" y="408" text-anchor="middle" font-size="12" font-weight="700" fill="#680010">ПЕЧЕНІГИ</text>
-<text x="562" y="422" text-anchor="middle" font-size="8.5" fill="#8a1a10">Понтійський степ · Дон → Дунай</text>
-
-<text x="795" y="168" text-anchor="middle" font-size="10" font-weight="700" fill="#6a3802">Волзька Булгарія</text>
-<text x="795" y="180" text-anchor="middle" font-size="8" fill="#8a5010">(Середня Волга)</text>
-
-<text x="290" y="250" text-anchor="middle" font-size="9.5" font-weight="700" fill="#205018">Велика Моравія</text>
-<text x="290" y="262" text-anchor="middle" font-size="8" fill="#305828">+863 Кирило і Мефодій</text>
-
-<text x="460" y="350" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a4838">Перша Болгарія</text>
-
-<!-- Візантія — на правильному місці: Анатолія + Балкани + Греція -->
-<!-- Балкани/Греція (частина Візантії) -->
-<path fill="rgba(100,60,180,0.22)" stroke="#5a28a8" stroke-width="2.5" d="
-M 350 360 L 390 348 L 425 345 L 448 358 L 448 382 L 428 402
-L 398 410 L 368 405 L 350 388 L 345 372 Z"/>
-<!-- Греція -->
-<path fill="rgba(100,60,180,0.22)" stroke="#5a28a8" stroke-width="2" d="
-M 382 385 L 425 362 L 455 362 L 470 378 L 468 402 L 450 418
-L 422 425 L 395 418 L 380 400 Z"/>
-<!-- Анатолія (Візантія) -->
-<path fill="rgba(100,60,180,0.22)" stroke="#5a28a8" stroke-width="2.5" d="
-M 490 622 L 535 608 L 588 598 L 645 595 L 700 598 L 748 610
-L 782 632 L 800 658 L 795 685 L 775 702 L 742 710
-L 705 708 L 668 698 L 635 682 L 605 660 L 578 638 L 548 625 Z"/>
-
-<text x="398" y="378" text-anchor="middle" font-size="9" font-weight="700" fill="#3a0878">Візантія</text>
-<text x="398" y="390" text-anchor="middle" font-size="8" fill="#4a1888">(Балкани · Греція)</text>
-<text x="640" y="650" text-anchor="middle" font-size="12" font-weight="700" fill="#3a0878">ВІЗАНТІЯ</text>
-<text x="640" y="665" text-anchor="middle" font-size="9" fill="#4a1888">Анатолія · Константинополь ★</text>
-
-<!-- Константинополь — на Босфорі між Европою і Анатолією -->
-<circle cx="488" cy="638" r="8" fill="#5a28a8" stroke="#fff" stroke-width="1.8"/>
-<text x="488" y="643" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">★</text>
-<text x="510" y="635" font-size="8.5" fill="#3a0878" font-weight="600">Константинополь</text>
-
-<!-- Корсунь (Херсонес) — на Кримі -->
-<circle cx="572" cy="522" r="7" fill="#c04020" stroke="#fff" stroke-width="1.5"/>
-<text x="590" y="518" font-size="8" fill="#7a1808" font-weight="600">Корсунь</text>
-<text x="590" y="530" font-size="7.5" fill="#9a2808">(Херсонес, Крим)</text>
-
-<!-- МОРЯ -->
-<text x="355" y="38" text-anchor="middle" font-size="9.5" fill="#1a4a6a" font-style="italic">Балтійське море</text>
-<text x="572" y="570" text-anchor="middle" font-size="9" fill="#1a4a6a" font-style="italic">Чорне море</text>
-<text x="730" y="558" text-anchor="middle" font-size="8" fill="#1a4a6a" font-style="italic">Азовське море</text>
-<text x="870" y="342" text-anchor="middle" font-size="8.5" fill="#1a4a6a" font-style="italic">Каспійське море</text>
-<text x="200" y="778" text-anchor="middle" font-size="9" fill="#1a4a6a" font-style="italic">Середземне море</text>
-
-<!-- ШЛЯх ІЗ ВАРЯГІВ У ГРЕКИ (Дніпром) -->
-<path fill="none" stroke="#1a4a9a" stroke-width="2.5" stroke-dasharray="10 5" opacity="0.82" marker-end="url(#ar)"
-d="M 312 108 L 385 140 L 438 175 L 468 220 L 480 268 L 488 318 L 495 368 L 505 418 L 514 468 L 520 515 L 526 548 L 528 600 L 500 630 L 488 638"/>
-<text x="352" y="175" font-size="9" fill="#1a4a9a" font-weight="500" transform="rotate(28,352,175)">«Із варягів у греки»</text>
-
-<!-- КОМПАС -->
-<g transform="translate(952,48)">
-<circle cx="0" cy="0" r="22" fill="white" stroke="#aaa" stroke-width="0.8" opacity="0.88"/>
-<text x="0" y="-8" text-anchor="middle" font-size="12" font-weight="600" fill="#222">N</text>
-<text x="0" y="16" text-anchor="middle" font-size="10" fill="#666">S</text>
-<text x="-16" y="5" text-anchor="middle" font-size="10" fill="#666">W</text>
-<text x="16" y="5" text-anchor="middle" font-size="10" fill="#666">E</text>
-<path d="M0 -18 L0 18 M-18 0 L18 0" stroke="#ccc" stroke-width="0.5"/>
-</g>
-
-<!-- МАСШТАБ -->
-<rect x="20" y="775" width="200" height="2" fill="#555"/>
-<rect x="20" y="770" width="2" height="12" fill="#555"/>
-<rect x="120" y="772" width="2" height="8" fill="#555"/>
-<rect x="220" y="770" width="2" height="12" fill="#555"/>
-<text x="20" y="798" font-size="9" fill="#444">0</text>
-<text x="115" y="798" font-size="9" fill="#444">500 км</text>
-<text x="200" y="798" font-size="9" fill="#444">1 000 км</text>
-<rect x="1" y="1" width="998" height="818" rx="4" fill="none" stroke="#9a8a68" stroke-width="1.5"/>
+<!-- ===================== СУЧАСНІ КОРДОНИ (пунктир) ===================== -->
+<svg class="overlay" viewBox="0 0 100 72" preserveAspectRatio="none">
+  <!-- Україна -->
+  <ellipse cx="52" cy="36" rx="13" ry="9" fill="none" stroke="#7a6030" stroke-width=".35" stroke-dasharray="1.2 .6" opacity=".6"/>
+  <!-- Польща -->
+  <ellipse cx="31" cy="30" rx="8" ry="6" fill="none" stroke="#888" stroke-width=".25" stroke-dasharray="1 .5" opacity=".5"/>
+  <!-- Білорусь -->
+  <ellipse cx="42" cy="25" rx="8" ry="6" fill="none" stroke="#888" stroke-width=".25" stroke-dasharray="1 .5" opacity=".5"/>
+  <!-- Румунія -->
+  <ellipse cx="40" cy="42" rx="6" ry="5" fill="none" stroke="#888" stroke-width=".22" stroke-dasharray=".8 .5" opacity=".45"/>
 </svg>
 
-<div class="legend">
-  <div class="li"><div class="sw" style="background:rgba(210,80,30,.28);border:3px solid #9a2808"></div>Київ / Поляни</div>
-  <div class="li"><div class="sw" style="background:rgba(140,195,90,.22);border:2px solid #3a7020"></div>Слов'янські племена</div>
-  <div class="li"><div class="sw" style="background:rgba(100,60,180,.22);border:2.5px solid #5a28a8"></div>Візантія</div>
-  <div class="li"><div class="sw" style="background:rgba(210,155,30,.28);border:2.5px solid #b08018"></div>Хозарський каганат (пониззя Волги)</div>
-  <div class="li"><div class="sw" style="background:rgba(200,70,40,.18);border:2px dashed #a02818"></div>Печеніги (степ на північ від Чорного моря)</div>
-  <div class="li"><div class="sw" style="background:rgba(70,130,55,.22);border:2px solid #3a7828"></div>Велика Моравія / Болгарія</div>
-  <div class="li"><div class="sw" style="background:none;border-top:2px dashed #7a6030;width:22px;height:8px"></div>Сучасні кордони</div>
-  <div class="li"><div class="ld" style="background:#1a4a9a;opacity:.8"></div>Шлях із варягів у греки</div>
+<!-- ===================== НАЗВИ КРАЇН ===================== -->
+<div class="mod" style="left:50%;top:32%">УКРАЇНА</div>
+<div class="mod" style="left:28%;top:24%">ПОЛЬЩА</div>
+<div class="mod" style="left:40%;top:18%">БІЛОРУСЬ</div>
+<div class="mod" style="left:68%;top:16%">РОСІЯ</div>
+<div class="mod" style="left:28%;top:6%">ШВЕЦІЯ</div>
+<div class="mod" style="left:38%;top:4%">ФІНЛЯНДІЯ</div>
+<div class="mod" style="left:14%;top:8%">НОРВЕГІЯ</div>
+<div class="mod" style="left:37%;top:57%;font-size:.9vw">ТУРЕЧ­ЧИНА</div>
+<div class="mod" style="left:16%;top:58%">РУМУНІЯ</div>
+
+<!-- ===================== БАЛТІЙСЬКЕ МОРЕ ===================== -->
+<!-- Під Скандинавією, над Польщею/Прибалтикою: горизонтальна водойма -->
+<div class="sea" style="left:22%;top:12%;width:20%;height:10%;border-radius:35% 40% 35% 30%">Балтійське море</div>
+
+<!-- ===================== ЧОРНЕ МОРЕ ===================== -->
+<!-- Правильно: між Кримом і Анатолією, нижче Причорноморського степу -->
+<div class="sea" style="left:38%;top:58%;width:20%;height:8%;border-radius:40% 35% 40% 30%">Чорне море</div>
+
+<!-- ===================== АЗОВСЬКЕ МОРЕ ===================== -->
+<!-- Між Кримом і Кавказом, правіше Чорного -->
+<div class="sea" style="left:59%;top:55%;width:7%;height:6%;border-radius:40%;font-size:.75vw">Азовське</div>
+
+<!-- ===================== СЕРЕДЗЕМНЕ МОРЕ ===================== -->
+<!-- Між Апеннінами / Балканами / Грецією і Африкою — далеко внизу -->
+<div class="sea" style="left:6%;top:72%;width:40%;height:11%;border-radius:20% 30% 20% 15%">Середземне море</div>
+
+<!-- ===================== ЕГЕЙСЬКЕ МОРЕ ===================== -->
+<div class="sea" style="left:29%;top:66%;width:7%;height:7%;border-radius:40%;font-size:.75vw">Егейське</div>
+
+<!-- ===================== КАСПІЙСЬКЕ МОРЕ ===================== -->
+<div class="sea" style="left:83%;top:42%;width:5%;height:14%;border-radius:30% 40% 30% 35%;font-size:.75vw">Каспій</div>
+
+<!-- ===================== ВАРЯГИ ===================== -->
+<div class="blob" style="left:8%;top:3%;width:16%;font-size:1.15vw;font-weight:700;color:#0e2050">
+  <div class="blob-title" style="color:#0e2050;font-size:1.3vw">ВАРЯГИ</div>
+  <div class="blob-sub" style="color:#2a4888">Скандинавія · Балтія</div>
 </div>
-<div class="note">Виправлена карта IX–X ст. Хозарія — правильно в пониззі Волги і Дону. Печеніги — правильно в степу на північ від Чорного моря (від Дону до Дунаю). Велика Моравія — правильно на захід від Карпат. Корсунь — на Кримі. Константинополь — на Босфорі.</div>
+
+<!-- ===================== ВЕЛИКА МОРАВІЯ ===================== -->
+<div class="blob" style="left:13%;top:28%;width:11%;height:12%;background:rgba(70,140,60,.22);border:2px solid #3a8028">
+  <div class="blob-title" style="font-size:.9vw;color:#205018">Велика<br>Моравія</div>
+  <div class="blob-sub" style="color:#305828">+863 Кирило і Мефодій</div>
+</div>
+
+<!-- ===================== ПОЛЬЩА ===================== -->
+<div class="blob" style="left:22%;top:24%;width:8%;height:9%;background:rgba(80,150,60,.18);border:1.5px solid #406030">
+  <div class="blob-title" style="font-size:.9vw;color:#204818">Польща</div>
+</div>
+
+<!-- ===================== ПЛЕМЕНА ===================== -->
+
+<!-- СЛОВЕНИ ІЛЬМЕНСЬКІ -->
+<div class="blob" style="left:47%;top:8%;width:13%;height:11%;background:rgba(140,195,90,.30);border:2.5px solid #3a7020">
+  <div class="blob-title" style="font-size:.95vw;color:#1a4808">СЛОВЕНИ<br>ІЛЬМЕНСЬКІ</div>
+  <div class="blob-sub" style="color:#2a6010">Новгород</div>
+</div>
+
+<!-- КРИВИЧІ -->
+<div class="blob" style="left:38%;top:19%;width:10%;height:9%;background:rgba(140,195,90,.28);border:2.5px solid #3a7020">
+  <div class="blob-title" style="font-size:.9vw;color:#1a4808">КРИВИЧІ</div>
+  <div class="blob-sub" style="color:#2a6010">Смоленськ</div>
+</div>
+
+<!-- ДРЕГОВИЧІ -->
+<div class="blob" style="left:36%;top:28%;width:9%;height:8%;background:rgba(140,195,90,.25);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.85vw;color:#1a4808">ДРЕГОВИЧІ</div>
+</div>
+
+<!-- РАДИМИЧІ -->
+<div class="blob" style="left:56%;top:20%;width:9%;height:8%;background:rgba(140,195,90,.25);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.85vw;color:#1a4808">РАДИМИЧІ</div>
+  <div class="blob-sub" style="color:#2a6010">р.Сож</div>
+</div>
+
+<!-- В'ЯТИЧІ -->
+<div class="blob" style="left:65%;top:17%;width:9%;height:8%;background:rgba(140,195,90,.22);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.85vw;color:#1a4808">В'ЯТИЧІ</div>
+  <div class="blob-sub" style="color:#2a6010">Ока · Волга</div>
+</div>
+
+<!-- ДУЛІБИ -->
+<div class="blob" style="left:26%;top:31%;width:8%;height:8%;background:rgba(140,195,90,.25);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.85vw;color:#1a4808">ДУЛІБИ</div>
+  <div class="blob-sub" style="color:#2a6010">Волинь</div>
+</div>
+
+<!-- БІЛІ ХОРВАТИ -->
+<div class="blob" style="left:22%;top:39%;width:9%;height:8%;background:rgba(140,195,90,.22);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.8vw;color:#1a4808">БІЛІ ХОРВАТИ</div>
+  <div class="blob-sub" style="color:#2a6010">Карпати</div>
+</div>
+
+<!-- ДРЕВЛЯНИ -->
+<div class="blob" style="left:34%;top:34%;width:9%;height:8%;background:rgba(140,195,90,.28);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.9vw;color:#1a4808">ДРЕВЛЯНИ</div>
+</div>
+
+<!-- ПОЛЯНИ / КИЇВ -->
+<div class="blob" style="left:44%;top:32%;width:11%;height:11%;background:rgba(200,70,30,.30);border:3px solid #9a2808">
+  <div class="blob-title" style="font-size:1vw;color:#7a1205">ПОЛЯНИ</div>
+  <div style="background:#9a2808;color:#fff;border-radius:3px;padding:1px 6px;font-size:.9vw;margin-top:2px;font-weight:700">КИЇВ ★</div>
+</div>
+
+<!-- СІВЕРЯНИ -->
+<div class="blob" style="left:56%;top:29%;width:10%;height:9%;background:rgba(140,195,90,.28);border:2.5px solid #3a7020">
+  <div class="blob-title" style="font-size:.9vw;color:#1a4808">СІВЕРЯНИ</div>
+  <div class="blob-sub" style="color:#2a6010">Чернігів</div>
+</div>
+
+<!-- УЛИЧІ -->
+<div class="blob" style="left:46%;top:43%;width:8%;height:7%;background:rgba(140,195,90,.22);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.8vw;color:#1a4808">УЛИЧІ</div>
+</div>
+
+<!-- ТИВЕРЦІ -->
+<div class="blob" style="left:34%;top:44%;width:8%;height:7%;background:rgba(140,195,90,.20);border:2px solid #3a7020">
+  <div class="blob-title" style="font-size:.8vw;color:#1a4808">ТИВЕРЦІ</div>
+</div>
+
+<!-- ===================== ПЕЧЕНІГИ ===================== -->
+<!-- Степова смуга між Руссю і Чорним морем: від Дону до Дунаю -->
+<div class="blob" style="left:28%;top:50%;width:36%;height:9%;background:rgba(200,70,40,.15);border:2.5px dashed #a02818;border-radius:40%">
+  <div class="blob-title" style="font-size:1.1vw;color:#680010">ПЕЧЕНІГИ</div>
+  <div class="blob-sub" style="color:#8a1a10">Понтійський степ · Дон → Дунай</div>
+</div>
+
+<!-- ===================== ХОЗАРСЬКИЙ КАГАНАТ ===================== -->
+<div class="blob" style="left:70%;top:30%;width:13%;height:17%;background:rgba(210,155,30,.28);border:3px solid #b08018">
+  <div class="blob-title" style="font-size:1vw;color:#6a3802">ХОЗАРСЬКИЙ<br>КАГАНАТ</div>
+  <div class="blob-sub" style="color:#8a5010">пониззя Волги і Дону</div>
+  <div style="margin-top:3px;font-size:.75vw;color:#704808">★ Ітіль (Астрахань)</div>
+</div>
+
+<!-- ===================== ВОЛЗЬКА БУЛГАРІЯ ===================== -->
+<div class="blob" style="left:72%;top:12%;width:11%;height:10%;background:rgba(210,175,60,.25);border:2px solid #a09030">
+  <div class="blob-title" style="font-size:.9vw;color:#6a3802">Волзька Булгарія</div>
+  <div class="blob-sub" style="color:#8a5010">Середня Волга</div>
+</div>
+
+<!-- ===================== БАЛКАНИ / БОЛГАРІЯ / ГРЕЦІЯ ===================== -->
+<!-- Ліворуч від Константинополя — між Дунаєм і Егейським морем -->
+
+<!-- Перша Болгарія — між Дунаєм і Чорним морем -->
+<div class="blob" style="left:26%;top:55%;width:10%;height:9%;background:rgba(60,120,80,.22);border:2px solid #285840">
+  <div class="blob-title" style="font-size:.85vw;color:#1a4028">Перша Болгарія</div>
+</div>
+
+<!-- Балкани/Сербія -->
+<div class="blob" style="left:17%;top:55%;width:9%;height:9%;background:rgba(80,130,80,.20);border:2px solid #305040">
+  <div class="blob-title" style="font-size:.8vw;color:#1a4028">Балкани<br>Сербія</div>
+</div>
+
+<!-- Греція -->
+<div class="blob" style="left:20%;top:64%;width:8%;height:8%;background:rgba(80,130,100,.20);border:2px solid #305040">
+  <div class="blob-title" style="font-size:.8vw;color:#204838">Греція</div>
+</div>
+
+<!-- Апеннінський п-ів (Рим) — зліва, виступає вниз -->
+<div class="blob" style="left:10%;top:55%;width:8%;height:16%;background:rgba(80,130,80,.18);border:2px solid #406030;border-radius:15px 15px 40px 40px">
+  <div class="blob-title" style="font-size:.8vw;color:#204818">Іт. п-ів</div>
+  <div class="blob-sub" style="color:#305828">Рим ★</div>
+</div>
+
+<!-- ===================== ВІЗАНТІЯ ===================== -->
+<!-- Константинополь — на протоці між Чорним і Егейським -->
+<div style="position:absolute;left:36.5%;top:65%;width:1.2%;padding-bottom:1.2%;background:#7030c0;border-radius:50%;border:2px solid #fff;z-index:10"></div>
+<div style="position:absolute;left:38%;top:64.5%;font-size:.85vw;font-weight:700;color:#3a0878;z-index:10;white-space:nowrap">Константинополь ★</div>
+
+<!-- Візантія — Балкани/Греція частина (ліворуч від Константинополя) -->
+<div class="blob" style="left:16%;top:63%;width:22%;height:11%;background:rgba(100,60,180,.18);border:2px solid #5a28a8;border-radius:30%">
+  <div class="blob-title" style="font-size:.85vw;color:#3a0878">Візантія (Балкани · Греція)</div>
+</div>
+
+<!-- Візантія — Анатолія (правіше, нижче Чорного моря) -->
+<div class="blob" style="left:37%;top:67%;width:30%;height:14%;background:rgba(100,60,180,.22);border:2.5px solid #5a28a8;border-radius:40%">
+  <div class="blob-title" style="font-size:1.3vw;color:#3a0878">ВІЗАНТІЯ</div>
+  <div class="blob-sub" style="color:#4a1888">Анатолія · Константинополь ★</div>
+</div>
+
+<!-- ===================== АФРИКА ===================== -->
+<div style="position:absolute;left:0;top:83%;width:55%;height:17%;background:#d8cc90;border-top:2px solid #a09060;opacity:.75"></div>
+<div style="position:absolute;left:8%;top:86%;font-size:.9vw;color:#7a6020;font-weight:600;opacity:.7">АФРИКА (Пн.)</div>
+
+<!-- ===================== ШЛЯх ІЗ ВАРЯГІВ У ГРЕКИ ===================== -->
+<svg class="overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <defs>
+    <marker id="ab" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0 0L6 3L0 6" fill="none" stroke="#1a4a9a" stroke-width="1.2"/>
+    </marker>
+  </defs>
+  <path d="M 19,10 C 25,15 32,20 40,26 C 44,30 48,33 50,38 C 51,44 50,50 47,57 C 44,62 40,65 37,67"
+    fill="none" stroke="#1a4a9a" stroke-width=".4" stroke-dasharray="1.5 .8" marker-end="url(#ab)" opacity=".8"/>
+  <text x="27" y="32" font-size="1.8" fill="#1a4a9a" font-style="italic" transform="rotate(-38,27,32)">«Із варягів у греки»</text>
+</svg>
+
+<!-- КОМПАС -->
+<div class="compass" style="right:1%;top:1%;width:4%;aspect-ratio:1">N<br><span style="font-size:.65vw;font-weight:400">W E</span><br>S</div>
+
+<!-- ЗАГОЛОВОК -->
+<div class="map-title">Блок 0 · Язичницька Русь і варяги (IX–X ст.)</div>
+<div class="map-sub">Племінні союзи та сусідні держави · сучасні кордони пунктиром</div>
+
+<!-- ЛЕГЕНДА -->
+<div class="legend">
+  <div class="lr"><div class="ld" style="background:rgba(200,70,30,.35);border:2px solid #9a2808"></div>Київ / Поляни</div>
+  <div class="lr"><div class="ld" style="background:rgba(140,195,90,.35);border:2px solid #3a7020"></div>Слов'янські племена</div>
+  <div class="lr"><div class="ld" style="background:rgba(100,60,180,.25);border:2px solid #5a28a8"></div>Візантія</div>
+  <div class="lr"><div class="ld" style="background:rgba(210,155,30,.35);border:2px solid #b08018"></div>Хозарський каганат</div>
+  <div class="lr"><div class="ldash-r"></div>Печеніги (степ)</div>
+  <div class="lr"><div class="ldash"></div>Шлях із варягів у греки</div>
+</div>
+
+</div>
 </div>
 </body>
 </html>
