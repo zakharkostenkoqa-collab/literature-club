@@ -290,8 +290,12 @@ async function renderFigures() {
   });
 
   const total = figs.figures.length;
-  const opened = figs.figures.filter(f => byAuthor[f.id]).length;
+  const openedList = figs.figures.filter(f => byAuthor[f.id]);
+  const opened = openedList.length;
   const pct = Math.round(opened / total * 100);
+
+  // Поки відкритих мало — показуємо їх широкими картками, щоб не зяяли порожні колонки
+  grid.className = 'figures-grid' + (opened > 0 && opened <= 2 ? ' figures-grid--few' : '');
 
   progressBox.innerHTML = `
     <div class="progress-row">
