@@ -445,10 +445,6 @@ const MEETING_EMBLEMS = {
 
 function renderMeetingEmblem(cfg) {
   if (!cfg) return '';
-  // Власне зображення має пріоритет над вбудованою іконкою
-  if (cfg.src) {
-    return `<img class="meeting-emblem-img" src="${cfg.src}" alt="${cfg.label || ''}" title="${cfg.label || ''}">`;
-  }
   const preset = MEETING_EMBLEMS[cfg.type];
   if (!preset) return '';
   return `<span class="meeting-emblem" title="${cfg.label || preset.label}">${preset.svg}</span>`;
@@ -474,16 +470,29 @@ async function renderNextTopic() {
         : `<span class="map-btn-empty" title="Карта готується">···</span>`}
     </div>`).join('') : '';
 
+  const emblem = data.emblem || {};
+  const hasImage = !!emblem.src;
+  const hasIcon = !hasImage && !!MEETING_EMBLEMS[emblem.type];
+
   box.innerHTML = `
     <div class="card next-topic-card">
-      <div class="stamp stamp-next">${data.status || 'ОЧІКУЄМО'}</div>
-      <div class="meta-row meta-row-emblem">
-        <span>Засідання № ${data.meetingNumber}${data.date ? ` · ${data.date}` : ''}</span>
-        ${renderMeetingEmblem(data.emblem)}
+      <div class="next-topic-top${hasImage ? ' has-visual' : ''}">
+        <div class="next-topic-info">
+          <div class="stamp stamp-next">${data.status || 'ОЧІКУЄМО'}</div>
+          <div class="meta-row meta-row-emblem">
+            <span>Засідання № ${data.meetingNumber}${data.date ? ` · ${data.date}` : ''}</span>
+            ${hasIcon ? renderMeetingEmblem(emblem) : ''}
+          </div>
+          <h3>${data.title}</h3>
+          <p class="subtitle">${data.subtitle || ''}</p>
+          ${data.intro ? `<p class="next-intro">${data.intro}</p>` : ''}
+        </div>
+        ${hasImage ? `
+        <figure class="next-topic-visual">
+          <img src="${emblem.src}" alt="${emblem.label || data.title}">
+          ${emblem.label ? `<figcaption>${emblem.label}</figcaption>` : ''}
+        </figure>` : ''}
       </div>
-      <h3>${data.title}</h3>
-      <p class="subtitle">${data.subtitle || ''}</p>
-      ${data.intro ? `<p class="next-intro">${data.intro}</p>` : ''}
       ${data.countdown ? '<div id="countdown" class="countdown"></div>' : ''}
       ${blocksHTML ? `<div class="blocks-list">${blocksHTML}</div>` : ''}
     </div>`;
