@@ -449,7 +449,7 @@ async function renderNextTopic() {
       <div class="meta-row">Засідання № ${data.meetingNumber}${data.date ? ` · ${data.date}` : ''}</div>
       <h3>${data.title}</h3>
       <p class="subtitle">${data.subtitle || ''}</p>
-      <p class="next-intro">${data.intro || ''}</p>
+      ${data.intro ? `<p class="next-intro">${data.intro}</p>` : ''}
       ${data.countdown ? '<div id="countdown" class="countdown"></div>' : ''}
       ${blocksHTML ? `<div class="blocks-list">${blocksHTML}</div>` : ''}
     </div>`;
