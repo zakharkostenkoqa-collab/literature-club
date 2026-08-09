@@ -319,7 +319,7 @@ async function renderFigures() {
           <div class="fig-book-info">
             <div class="fig-book-title">«${b.title}»${b.year ? ` <span class="book-year">${b.year}</span>` : ''}</div>
             <div class="fig-book-meta">
-              ${hasScore ? `<span class="fig-book-score ${scoreClass(b.score)}">${fmtScore(b.score)}/10</span>` : '<span class="fig-book-score score-none">ще не оцінено</span>'}
+              ${hasScore ? `<span class="fig-book-score ${scoreClass(b.score)}">${fmtScore(b.score)}<span class="fig-book-max">/10</span></span>` : '<span class="fig-book-score score-none">ще не оцінено</span>'}
               ${b.meeting ? `<span class="fig-book-meeting">засідання № ${b.meeting}</span>` : ''}
             </div>
           </div>
