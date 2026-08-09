@@ -4,6 +4,6 @@
     { "name": "Андрій", "photo": "assets/participants/Andy.jpg", "favorite": "", "rating": 0 },
     { "name": "Аня", "photo": "assets/participants/Ann.jpg", "favorite": "", "rating": 96 },
     { "name": "Дарина", "photo": "assets/participants/Daryna.jpg", "favorite": "", "rating": 96 },
-    { "name": "Захар", "photo": "assets/participants/Zakhar.jpg", "favorite": "", "rating": 96 }
+    { "name": "Захар", "photo": "assets/participants/Zakhar.jpg", "favorite": "", "rating": 40 }
   ]
 }
