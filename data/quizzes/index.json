@@ -1,0 +1,25 @@
+{
+  "hostNote": "Список усіх вікторин (data/quizzes/index.json). Щоб додати нову: створіть файл у data/quizzes/, і додайте сюди запис. Поле 'status': 'ready' — вікторина працює; 'soon' — показує заглушку «у розробці». Поле 'file' потрібне лише для status='ready'. Порядок у масиві = порядок кнопок на сайті.",
+  "quizzes": [
+    {
+      "id": "tygrolovy",
+      "label": "Тигролови",
+      "title": "Перевірка на тигролова",
+      "author": "Іван Багряний",
+      "book": "Тигролови",
+      "meeting": 1,
+      "file": "data/quizzes/tygrolovy.json",
+      "status": "ready"
+    },
+    {
+      "id": "rus-rich-pospolyta",
+      "label": "Русь → Річ Посполита",
+      "title": "Від Київської Русі до Речі Посполитої",
+      "author": "",
+      "book": "Історичний період",
+      "meeting": 2,
+      "file": "",
+      "status": "soon"
+    }
+  ]
+}
