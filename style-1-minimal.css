@@ -233,6 +233,20 @@ section .section-num {
 .card-next-empty { display: flex; align-items: center; min-height: 90px; }
 .empty-note { color: #999; font-style: italic; margin: 0; }
 
+/* --- Емблема типу зустрічі --- */
+.meta-row-emblem {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.meeting-emblem {
+  flex-shrink: 0; width: 30px; height: 30px;
+  color: var(--ink); opacity: .55; display: block;
+}
+.meeting-emblem svg { width: 100%; height: 100%; display: block; }
+.meeting-emblem-img {
+  flex-shrink: 0; width: 34px; height: 34px;
+  object-fit: contain; display: block;
+}
+
 /* --- Next topic blocks list --- */
 .next-intro { color: #666; font-size: 14px; margin-bottom: 18px; }
 .blocks-list { border-top: 1px solid #d0c8b0; margin-top: 8px; padding-top: 4px; }
