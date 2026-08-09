@@ -319,7 +319,7 @@ button.reset-btn:hover { opacity: 0.75; }
 .book-card { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border: 1px solid var(--line); padding: 16px 18px; }
 .book-main { flex: 1; min-width: 0; }
 .book-cover {
-  width: 54px; height: 81px; object-fit: cover;
+  width: 56px; height: auto; max-height: 96px; object-fit: contain;
   flex-shrink: 0; display: block; align-self: flex-start;
   border: 1px solid var(--line);
   box-shadow: 2px 2px 0 rgba(0,0,0,.07);
