@@ -318,7 +318,7 @@ async function renderFigures() {
     }).join('');
 
     return `
-      <div class="figure-card figure-open accent-${f.accent}">
+      <div class="figure-card figure-open accent-${f.accent}" id="fig-${f.id}">
         ${f.image
           ? `<img class="figure-avatar figure-avatar-photo" src="${f.image}" alt="${f.name}">`
           : `<div class="figure-avatar">${f.initials}</div>`}
@@ -331,32 +331,47 @@ async function renderFigures() {
       </div>`;
   }).join('');
 
-  // Закриті — компактно, згруповані за епохами (у порядку хронології)
-  const lockedBox = document.getElementById('figures-locked');
-  const locked = figs.figures.filter(f => !byAuthor[f.id]);
-
-  if (!locked.length) { lockedBox.innerHTML = ''; return; }
-
+  // Карта постатей за епохами: відкриті аватарами, закриті знаками питання
+  const mapBox = document.getElementById('figures-locked');
   const eraOrder = timelineData
     ? timelineData.eras.map(e => e.title)
-    : [...new Set(locked.map(f => f.era))];
+    : [...new Set(figs.figures.map(f => f.era))];
 
   const groups = eraOrder
-    .map(era => ({ era, items: locked.filter(f => f.era === era) }))
+    .map(era => ({ era, items: figs.figures.filter(f => f.era === era) }))
     .filter(g => g.items.length);
 
-  lockedBox.innerHTML = `
-    <div class="locked-head">Ще не відкрито · ${locked.length}</div>
+  mapBox.innerHTML = `
+    <div class="locked-head">Постаті за епохами</div>
     <div class="locked-groups">
-      ${groups.map(g => `
-        <div class="locked-group">
-          <span class="locked-group-era">${g.era}</span>
-          <span class="locked-group-dots">
-            ${g.items.map(() => '<i class="locked-dot" title="Відкриється після прочитання">?</i>').join('')}
-          </span>
-          <span class="locked-group-count">${g.items.length}</span>
-        </div>`).join('')}
+      ${groups.map(g => {
+        const openedInEra = g.items.filter(f => byAuthor[f.id]).length;
+        const marks = g.items.map(f => {
+          if (!byAuthor[f.id]) {
+            return '<i class="locked-dot" title="Ще не відкрито">?</i>';
+          }
+          const inner = f.image
+            ? `<img src="${f.image}" alt="${f.name}">`
+            : `<span>${f.initials}</span>`;
+          return `<button class="opened-dot" onclick="scrollToFigure('${f.id}')" title="${f.name}">${inner}</button>`;
+        }).join('');
+        return `
+          <div class="locked-group">
+            <span class="locked-group-era">${g.era}</span>
+            <span class="locked-group-dots">${marks}</span>
+            <span class="locked-group-count${openedInEra ? ' has-opened' : ''}">${openedInEra}/${g.items.length}</span>
+          </div>`;
+      }).join('')}
     </div>`;
+}
+
+/* Перехід до картки постаті */
+function scrollToFigure(id) {
+  const card = document.getElementById('fig-' + id);
+  if (!card) return;
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  card.classList.add('figure-flash');
+  setTimeout(() => card.classList.remove('figure-flash'), 1200);
 }
 
 /* ---------- Вікторини (архів) ---------- */
