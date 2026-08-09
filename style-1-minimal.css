@@ -485,6 +485,7 @@ button.reset-btn:hover { opacity: 0.75; }
 .fig-book-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 12.5px; line-height: 1.3; }
 .fig-book-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin-top: 4px; }
 .fig-book-score { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 12px; }
+.fig-book-max { color: #c4c4c4; font-weight: 500; font-size: 10px; }
 .fig-book-meeting { font-family: 'Manrope', sans-serif; font-size: 9.5px; color: #bbb; }
 
 /* --- Карта постатей за епохами --- */
@@ -597,7 +598,7 @@ button.reset-btn:hover { opacity: 0.75; }
 .book-meta { text-align: right; flex-shrink: 0; }
 .book-score { font-family: 'Unbounded', sans-serif; font-weight: 900; line-height: 1; white-space: nowrap; }
 .score-num { font-size: 24px; }
-.score-max { font-size: 11px; color: #bbb; font-weight: 500; }
+.score-max { font-size: 11px; color: #c4c4c4; font-weight: 500; }
 .score-high { color: var(--index-blue); }
 .score-mid  { color: var(--ink); }
 .score-low  { color: #999; }
