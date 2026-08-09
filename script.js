@@ -172,6 +172,11 @@ function scoreClass(score) {
   return 'score-low';
 }
 
+/* Українською десятковий роздільник — кома: 9.4 → 9,4 */
+function fmtScore(score) {
+  return String(score).replace('.', ',');
+}
+
 function renderEraPanel(i) {
   const panel = document.getElementById('timeline-panel');
   const era = timelineData.eras[i];
@@ -189,7 +194,7 @@ function renderEraPanel(i) {
         ${b.cover ? `<img class="book-cover" src="${b.cover}" alt="Обкладинка: ${b.title}" title="${b.title}">` : ''}
         <div class="book-meta">
           ${hasScore
-            ? `<div class="book-score ${scoreClass(b.score)}"><span class="score-num">${b.score}</span><span class="score-max">/10</span></div>
+            ? `<div class="book-score ${scoreClass(b.score)}"><span class="score-num">${fmtScore(b.score)}</span><span class="score-max">/10</span></div>
                <div class="book-score-label">оцінка клубу</div>`
             : `<div class="book-score score-none"><span class="score-num">—</span></div>
                <div class="book-score-label">ще не оцінено</div>`}
@@ -314,7 +319,7 @@ async function renderFigures() {
           <div class="fig-book-info">
             <div class="fig-book-title">«${b.title}»${b.year ? ` <span class="book-year">${b.year}</span>` : ''}</div>
             <div class="fig-book-meta">
-              ${hasScore ? `<span class="fig-book-score ${scoreClass(b.score)}">${b.score}/10</span>` : '<span class="fig-book-score score-none">ще не оцінено</span>'}
+              ${hasScore ? `<span class="fig-book-score ${scoreClass(b.score)}">${fmtScore(b.score)}/10</span>` : '<span class="fig-book-score score-none">ще не оцінено</span>'}
               ${b.meeting ? `<span class="fig-book-meeting">засідання № ${b.meeting}</span>` : ''}
             </div>
           </div>
