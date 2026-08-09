@@ -385,6 +385,38 @@ button.reset-btn:hover { opacity: 0.75; }
   gap: 18px;
   margin-top: 24px;
 }
+/* Широка картка — лише на десктопі й лише коли відкритих одна-дві */
+@media (min-width: 621px) {
+  .figures-grid--few { grid-template-columns: 1fr; }
+  .figures-grid--few .figure-open {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-areas:
+      "avatar name"
+      "avatar years"
+      "avatar era"
+      "avatar note"
+      "avatar quote"
+      "avatar books";
+    gap: 0 30px;
+    align-items: start;
+    text-align: left;
+    padding: 32px 34px;
+  }
+  .figures-grid--few .figure-avatar {
+    grid-area: avatar; margin: 0;
+    width: 120px; height: 120px; font-size: 32px;
+  }
+  .figures-grid--few .figure-open h3 { grid-area: name; font-size: 24px; margin: 0 0 5px; }
+  .figures-grid--few .figure-years { grid-area: years; font-size: 12px; margin-bottom: 5px; }
+  .figures-grid--few .figure-era { grid-area: era; margin-bottom: 0; }
+  .figures-grid--few .figure-note { grid-area: note; margin: 16px 0 0; font-size: 14px; max-width: 62ch; }
+  .figures-grid--few .figure-quote { grid-area: quote; max-width: 62ch; }
+  .figures-grid--few .fig-books { grid-area: books; margin-top: 18px; }
+  .figures-grid--few .fig-book-cover { width: 46px; max-height: 68px; }
+  .figures-grid--few .fig-book-title { font-size: 14px; }
+}
+
 @media (max-width: 620px) {
   .figures-grid { grid-template-columns: 1fr; gap: 14px; }
 
