@@ -117,10 +117,9 @@ header.masthead {
 
 /* --- Таймер у картці засідання --- */
 .countdown {
-  margin: 20px 0 22px;
+  margin: 20px 0 4px;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 18px 0;
+  padding: 18px 0 6px;
   text-align: center;
 }
 .countdown:empty { display: none; }
@@ -140,7 +139,7 @@ header.masthead {
   font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 500;
   color: #999; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px;
 }
-.countdown-reached { border-color: var(--index-blue); }
+.countdown-reached { border-top-color: var(--index-blue); }
 .countdown-reached-text {
   font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 24px;
   color: var(--index-blue); line-height: 1.2;
