@@ -423,6 +423,37 @@ async function runQuiz(meta) {
   };
 }
 
+/* Вбудовані емблеми типів зустрічі */
+const MEETING_EMBLEMS = {
+  history: {
+    label: 'Історична зустріч',
+    svg: `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 6h14a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H9"/>
+      <path d="M9 6a2 2 0 0 0-2 2v3h4"/>
+      <path d="M9 28a2 2 0 0 1-2-2v-3h4"/>
+      <path d="M13 13h8M13 17h8M13 21h5"/>
+    </svg>`
+  },
+  literature: {
+    label: 'Літературна зустріч',
+    svg: `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 9c-2.5-2-6-2.5-9-2v16c3-.5 6.5 0 9 2 2.5-2 6-2.5 9-2V7c-3-.5-6.5 0-9 2Z"/>
+      <path d="M16 9v16"/>
+    </svg>`
+  }
+};
+
+function renderMeetingEmblem(cfg) {
+  if (!cfg) return '';
+  // Власне зображення має пріоритет над вбудованою іконкою
+  if (cfg.src) {
+    return `<img class="meeting-emblem-img" src="${cfg.src}" alt="${cfg.label || ''}" title="${cfg.label || ''}">`;
+  }
+  const preset = MEETING_EMBLEMS[cfg.type];
+  if (!preset) return '';
+  return `<span class="meeting-emblem" title="${cfg.label || preset.label}">${preset.svg}</span>`;
+}
+
 /* ---------- Наступна зустріч ---------- */
 async function renderNextTopic() {
   const data = await loadJSON('data/next-topic.json');
@@ -446,7 +477,10 @@ async function renderNextTopic() {
   box.innerHTML = `
     <div class="card next-topic-card">
       <div class="stamp stamp-next">${data.status || 'ОЧІКУЄМО'}</div>
-      <div class="meta-row">Засідання № ${data.meetingNumber}${data.date ? ` · ${data.date}` : ''}</div>
+      <div class="meta-row meta-row-emblem">
+        <span>Засідання № ${data.meetingNumber}${data.date ? ` · ${data.date}` : ''}</span>
+        ${renderMeetingEmblem(data.emblem)}
+      </div>
       <h3>${data.title}</h3>
       <p class="subtitle">${data.subtitle || ''}</p>
       ${data.intro ? `<p class="next-intro">${data.intro}</p>` : ''}
