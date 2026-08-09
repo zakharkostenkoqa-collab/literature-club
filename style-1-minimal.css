@@ -1,0 +1,595 @@
+/* ВАРІАНТ 1 — Мінімалізм: багато повітря, велика жирна типографіка, чорно-біле + єдиний національний акцент */
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700;800&family=PT+Serif:ital@1&family=PT+Mono&display=swap');
+
+:root {
+  --paper: #fafaf7;
+  --paper-dark: #f0efe9;
+  --ink: #111111;
+  --stamp-red: #9c2b26;
+  --index-blue: #0057b7;
+  --gold: #8a7a4a;
+  --line: #d8d5cd;
+  --card-bg: #ffffff;
+  --flag-blue: #0057b7;
+  --flag-yellow: #ffd700;
+  --teal: #2f6f62;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.6;
+}
+a { color: var(--index-blue); }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+/* ---------- Nav ---------- */
+.sticky-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+nav.tabs {
+  background: var(--ink);
+}
+nav.tabs .wrap { display: flex; gap: 2px; overflow-x: auto; }
+nav.tabs a {
+  flex: 0 0 auto;
+  display: block;
+  padding: 18px 20px;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+nav.tabs a:hover { opacity: 0.55; }
+
+.flag-ribbon {
+  height: 4px;
+  background: linear-gradient(90deg, var(--flag-blue) 50%, var(--flag-yellow) 50%);
+}
+
+/* ---------- Header ---------- */
+header.masthead {
+  padding: 70px 0 50px;
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+}
+.header-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.header-center { text-align: center; }
+.header-side-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: #999; margin-bottom: 14px;
+}
+.header-participants-block .header-side-label { text-align: left; }
+.header-stats-block .header-side-label { text-align: right; }
+.header-participants, .header-stats { display: flex; flex-wrap: wrap; gap: 14px; }
+.header-participants { justify-content: space-between; }
+.header-stats { justify-content: space-between; }
+.mini-loading { font-size: 12px; color: #999; margin: 0; }
+
+.mini-avatar { display: flex; flex-direction: column; align-items: center; flex: 1 1 0; min-width: 56px; }
+.mini-avatar-img {
+  width: 52px; height: 52px; border-radius: 50%;
+  object-fit: cover; border: none;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 15px;
+  color: #fff; background: var(--ink);
+}
+.mini-avatar-name { font-family: 'Manrope', sans-serif; font-size: 10px; color: #777; margin-top: 6px; text-align: center; }
+.mini-avatar-ratinglabel {
+  font-family: 'Manrope', sans-serif; font-weight: 500; font-size: 7.5px;
+  text-transform: lowercase; letter-spacing: 0.06em;
+  color: #b0b0b0; margin-top: 3px; text-align: center; line-height: 1;
+}
+.mini-avatar-rating {
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 9px;
+  color: var(--index-blue); margin-top: 2px; text-align: center;
+  display: inline-flex; align-items: center; gap: 3px; white-space: nowrap;
+}
+/* Місця в рейтингу — приглушені металеві відтінки */
+.mini-avatar-rating.medal-gold   { color: #b0872b; }
+.mini-avatar-rating.medal-silver { color: #8c8c92; }
+.mini-avatar-rating.medal-bronze { color: #a06a42; }
+.coin-icon { width: 9px; height: 9px; flex-shrink: 0; display: block; }
+
+.mini-stat { display: flex; flex-direction: column; align-items: center; padding: 4px 8px; flex: 1 1 0; min-width: 56px; }
+.mini-stat-value { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 22px; color: var(--ink); line-height: 1; }
+.mini-stat-label { font-family: 'Manrope', sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 0.05em; color: #999; margin-top: 5px; text-align: center; }
+
+/* --- Таймер у картці засідання --- */
+.countdown {
+  margin: 20px 0 4px;
+  border-top: 1px solid var(--line);
+  padding: 18px 0 6px;
+  text-align: center;
+}
+.countdown:empty { display: none; }
+.countdown-units {
+  display: flex; align-items: baseline; justify-content: center;
+  gap: 8px; font-family: 'Unbounded', sans-serif; line-height: 1;
+}
+.cd-unit { display: inline-flex; align-items: baseline; gap: 3px; }
+.cd-unit b { font-weight: 700; font-size: 30px; color: var(--ink); }
+.cd-unit i {
+  font-family: 'Manrope', sans-serif; font-style: normal;
+  font-weight: 500; font-size: 11px; color: #aaa;
+}
+.cd-sep { color: #ddd; font-size: 16px; }
+.cd-secs b { color: #999; font-weight: 500; }
+.countdown-label {
+  font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 500;
+  color: #999; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px;
+}
+.countdown-reached { border-top-color: var(--index-blue); }
+.countdown-reached-text {
+  font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 24px;
+  color: var(--index-blue); line-height: 1.2;
+}
+
+header.masthead .kicker {
+  font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--index-blue);
+}
+header.masthead h1 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: clamp(30px, 5.4vw, 58px);
+  margin: 12px 0 0;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 760px) {
+  .header-grid { grid-template-columns: 1fr; text-align: center; }
+  .header-participants { justify-content: center; }
+  .header-participants-block .header-side-label,
+  .header-stats-block .header-side-label { text-align: center; }
+
+  /* Статистика сіткою 2×2 — рівні картки, без рваних пустот */
+  .header-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 10px;
+    align-items: start;
+  }
+  .mini-stat { min-width: 0; padding: 0 4px; }
+  .mini-stat-value { font-size: 20px; }
+  .mini-stat-label { font-size: 8.5px; }
+}
+
+@media (max-width: 560px) {
+  .cd-unit b { font-size: 24px; }
+  .cd-unit i { font-size: 10px; }
+  .countdown-units { gap: 5px; }
+  .cd-sep { font-size: 13px; }
+  .countdown-reached-text { font-size: 19px; }
+}
+
+/* ---------- Signature stitch divider (thin, monochrome) ---------- */
+.stitch-divider {
+  height: 5px;
+  background-image:
+    repeating-linear-gradient(45deg, var(--ink) 0, var(--ink) 3px, transparent 3px, transparent 6px);
+  opacity: 0.15;
+  border: none;
+}
+
+/* ---------- Sections ---------- */
+section { padding: 70px 0; }
+section h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  margin: 0 0 6px;
+  display: inline-block;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+section .section-num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #aaa;
+  letter-spacing: 0.14em;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--ink);
+  padding: 32px;
+  position: relative;
+  box-shadow: none;
+}
+.card + .card { margin-top: 18px; }
+.stamp {
+  display: inline-block;
+  border: 1px solid var(--ink); color: var(--ink);
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.1em; padding: 5px 12px; border-radius: 0; background: none;
+  margin-bottom: 14px;
+}
+.stamp-next { border-color: var(--index-blue); color: var(--index-blue); }
+.card-next-empty { display: flex; align-items: center; min-height: 90px; }
+.empty-note { color: #999; font-style: italic; margin: 0; }
+
+/* --- Верх картки: текст + акцентне зображення --- */
+.next-topic-top { margin-bottom: 4px; }
+.next-topic-top.has-visual {
+  display: grid;
+  grid-template-columns: 1fr 0.78fr;
+  gap: 30px;
+  align-items: stretch;
+}
+.next-topic-info { min-width: 0; }
+
+.next-topic-visual {
+  margin: 0; display: flex; flex-direction: column;
+  min-width: 0;
+}
+.next-topic-visual img {
+  width: 100%; height: 100%; min-height: 210px;
+  object-fit: cover; display: block;
+  border: 1px solid var(--line);
+}
+.next-topic-visual figcaption {
+  font-family: 'Manrope', sans-serif; font-size: 9.5px; font-weight: 500;
+  color: #aaa; letter-spacing: .06em; text-transform: uppercase;
+  margin-top: 8px; text-align: right;
+}
+
+/* --- Емблема типу зустрічі (мала іконка) --- */
+.meta-row-emblem {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.meeting-emblem {
+  flex-shrink: 0; width: 30px; height: 30px;
+  color: var(--ink); opacity: .55; display: block;
+}
+.meeting-emblem svg { width: 100%; height: 100%; display: block; }
+
+@media (max-width: 760px) {
+  .next-topic-top.has-visual { grid-template-columns: 1fr; gap: 20px; }
+  .next-topic-visual img { min-height: 0; max-height: 240px; }
+  .next-topic-visual figcaption { text-align: center; }
+}
+
+/* --- Next topic blocks list --- */
+.next-intro { color: #666; font-size: 14px; margin-bottom: 18px; }
+.blocks-list { border-top: 1px solid #d0c8b0; margin-top: 8px; padding-top: 4px; }
+.block-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(107,90,62,0.15); }
+.block-row:last-child { border-bottom: none; }
+.block-num { font-family: 'PT Mono', monospace; font-size: 11px; color: #a08030; flex: 0 0 24px; font-weight: 700; letter-spacing: .05em; }
+.block-period { font-family: 'Manrope', sans-serif; font-size: 10px; color: #888; flex: 0 0 72px; white-space: nowrap; }
+.block-title { font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700; color: #111; flex: 1; }
+.map-btn { flex: 0 0 auto; background: none; border: 1px solid #ccc; border-radius: 4px; padding: 4px 9px; font-size: 15px; cursor: pointer; line-height: 1; transition: border-color .15s, background .15s; }
+.map-btn:hover { border-color: #185FA5; background: rgba(42,63,95,.06); }
+.map-btn-empty { flex: 0 0 auto; font-family: 'PT Mono', monospace; font-size: 10px; color: #bbb; padding: 4px 6px; cursor: default; }
+
+/* --- Map modal --- */
+#map-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(32,29,26,.72); cursor: pointer; }
+.modal-box { position: relative; z-index: 1; background: #f5f0e4; border: 2px solid #201d1a; width: 92vw; max-width: 1100px; height: 88vh; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #ccc; flex-shrink: 0; }
+.modal-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; color: #111; }
+.modal-close { background: none; border: 1px solid #ccc; width: 28px; height: 28px; cursor: pointer; font-size: 13px; color: #111; display: flex; align-items: center; justify-content: center; }
+.modal-close:hover { border-color: #111; background: rgba(32,29,26,.06); }
+.modal-iframe { flex: 1; width: 100%; border: none; background: #f5f0e4; }
+
+/* Зображення в модалі — вписується повністю, без обрізання */
+.modal-imgwrap { flex: 1; width: 100%; overflow: auto; background: #f5f0e4; display: flex; align-items: center; justify-content: center; padding: 10px; }
+.modal-img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+/* Кнопка "відкрити в новій вкладці" */
+.modal-open-new { margin-left: auto; margin-right: 8px; text-decoration: none; border: 1px solid #ccc; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #111; }
+.modal-open-new:hover { border-color: #111; background: rgba(32,29,26,.06); }
+.modal-header .modal-title { margin-right: 8px; }
+
+@media (max-width: 600px) {
+  .block-period { display: none; }
+  .modal-box { width: 98vw; height: 94vh; }
+}
+.card .meta-row { font-family: 'Manrope', sans-serif; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+.card h3 { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 24px; margin: 0 0 8px; }
+.card .subtitle { color: var(--index-blue); font-weight: 700; margin: 0 0 12px; }
+
+/* ---------- Quiz ---------- */
+.quiz-selector { display: flex; flex-wrap: wrap; gap: 8px; max-width: 640px; margin: 18px auto 0; }
+.quiz-tab {
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px;
+  background: none; border: 1px solid var(--line); color: #777;
+  padding: 8px 14px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.quiz-tab:hover { border-color: var(--ink); color: var(--ink); }
+.quiz-tab.active { border-color: var(--ink); background: var(--ink); color: #fff; }
+.quiz-tab-soon { opacity: .75; }
+.tab-soon-mark { font-size: 8.5px; font-weight: 500; text-transform: lowercase; letter-spacing: .04em; color: #aaa; border: 1px solid #ddd; padding: 1px 5px; }
+.quiz-tab.active .tab-soon-mark { color: #ddd; border-color: #666; }
+
+.quiz-head { max-width: 640px; margin: 22px auto 0; }
+.quiz-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 4px; }
+.quiz-meta { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .08em; }
+.quiz-lead { font-family: 'Manrope', sans-serif; font-size: 13px; color: #777; margin: 8px 0 0; }
+
+.quiz-soon { max-width: 640px; margin: 24px auto 0; border: 1px dashed var(--line); padding: 40px 24px; text-align: center; }
+.quiz-soon-icon { font-size: 30px; line-height: 1; margin-bottom: 12px; }
+.quiz-soon-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 8px; }
+.quiz-soon-text { font-family: 'Manrope', sans-serif; font-size: 13px; color: #999; margin: 0; }
+
+#quiz-content, #quiz-result, #quiz-reset { max-width: 640px; margin-left: auto; margin-right: auto; display: block; }
+.quiz-progress { font-family: 'Manrope', sans-serif; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+.quiz-q { margin-bottom: 14px; }
+.quiz-q p.q-text { font-weight: 800; font-size: 19px; margin: 0 0 16px; }
+.quiz-q .opt {
+  display: block; width: 100%; text-align: left;
+  background: none; border: none; border-bottom: 1px solid var(--line);
+  padding: 14px 4px; margin-bottom: 0; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 16px; color: var(--ink);
+  transition: padding-left 0.15s ease, color 0.15s ease;
+}
+.quiz-q .opt:hover { padding-left: 12px; color: var(--index-blue); }
+.quiz-q .opt.correct { color: #2f7a3f; font-weight: 700; border-color: #2f7a3f; }
+.quiz-q .opt.wrong { color: var(--stamp-red); text-decoration: line-through; border-color: var(--stamp-red); }
+.quiz-q .opt[disabled] { cursor: default; }
+.next-q-btn { display: block; }
+#quiz-result { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; margin-top: 20px; padding: 18px; border: 1px solid var(--ink); display: none; }
+
+.quiz-title-result { text-align: center; padding: 32px 20px; }
+.quiz-title-emoji { font-size: 56px; line-height: 1; margin-bottom: 10px; }
+.quiz-title-name { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 26px; margin-bottom: 8px; }
+.quiz-title-score { font-family: 'Manrope', sans-serif; font-size: 14px; color: #666; margin-bottom: 6px; }
+.quiz-title-hint { font-family: 'Manrope', sans-serif; font-size: 12px; color: #999; font-style: italic; }
+
+button.reset-btn {
+  font-family: 'Manrope', sans-serif; font-weight: 700; background: var(--ink); color: #fff;
+  border: none; padding: 12px 22px; cursor: pointer; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-top: 16px;
+  transition: opacity 0.2s ease;
+}
+button.reset-btn:hover { opacity: 0.75; }
+
+/* ---------- Archive list ---------- */
+.archive-item { display: flex; gap: 16px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 16px 0; }
+.archive-item .num { font-family: 'Manrope', sans-serif; font-weight: 700; color: #999; font-size: 13px; flex: 0 0 60px; }
+.archive-item .date { font-family: 'Manrope', sans-serif; font-size: 12px; color: #999; flex: 0 0 90px; }
+.archive-item a { font-weight: 700; text-decoration: none; }
+.archive-item a:hover { text-decoration: underline; }
+
+/* ---------- Відомі українці (сітка) ---------- */
+.section-lead { color: #888; margin-top: -6px; }
+
+.figures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+@media (max-width: 620px) {
+  .figures-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 12px; }
+  .figure-card { padding: 18px 14px; }
+  .figure-avatar { width: 50px; height: 50px; font-size: 15px; margin-bottom: 10px; }
+  .figure-card h3 { font-size: 14px; }
+  .figure-years { font-size: 10px; }
+  .figure-era { font-size: 8px; }
+  .figure-note { font-size: 11.5px; line-height: 1.45; }
+  .fig-book-title { font-size: 11px; }
+  .fig-book-cover { width: 28px; max-height: 42px; }
+}
+
+.figure-card {
+  background: var(--card-bg);
+  border: 1px solid var(--ink);
+  padding: 26px 22px;
+  text-align: center;
+  display: flex; flex-direction: column;
+}
+
+/* --- Відкрита картка --- */
+.figure-open { border-top-width: 4px; }
+.figure-open.accent-blue       { border-top-color: var(--index-blue); }
+.figure-open.accent-yellow     { border-top-color: #c9a227; }
+.figure-open.accent-terracotta { border-top-color: var(--stamp-red); }
+.figure-open.accent-teal       { border-top-color: var(--teal); }
+
+.figure-avatar {
+  width: 62px; height: 62px; border-radius: 50%; margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 18px;
+  color: #fff; background: var(--ink); flex-shrink: 0;
+}
+.figure-avatar-photo { object-fit: cover; border: none; filter: grayscale(100%); }
+.figure-card h3 { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 17px; margin: 0 0 4px; line-height: 1.25; }
+.figure-years { font-family: 'Manrope', sans-serif; font-size: 11px; color: #999; margin-bottom: 6px; }
+.figure-era {
+  font-family: 'Manrope', sans-serif; font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; color: #bbb; margin-bottom: 12px;
+}
+.figure-note { margin: 0 0 10px; font-size: 13px; line-height: 1.5; text-align: left; color: #444; }
+.figure-quote { font-style: italic; color: var(--index-blue); border-top: 1px solid var(--line); padding-top: 10px; margin: 10px 0 0; font-size: 13px; }
+
+/* --- Книги на картці автора --- */
+.fig-books { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
+.fig-book { display: flex; gap: 10px; align-items: flex-start; text-align: left; }
+.fig-book + .fig-book { margin-top: 10px; }
+.fig-book-cover { width: 34px; height: auto; max-height: 50px; object-fit: contain; border: 1px solid var(--line); flex-shrink: 0; }
+.fig-book-info { min-width: 0; flex: 1; }
+.fig-book-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 12.5px; line-height: 1.3; }
+.fig-book-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin-top: 4px; }
+.fig-book-score { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 12px; }
+.fig-book-meeting { font-family: 'Manrope', sans-serif; font-size: 9.5px; color: #bbb; }
+
+/* --- Закриті постаті: компактний блок за епохами --- */
+.figures-locked { margin-top: 30px; }
+.figures-locked:empty { display: none; }
+.locked-head {
+  font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .12em; color: #bbb;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 4px;
+}
+.locked-group {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 0; border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.locked-group:last-child { border-bottom: none; }
+.locked-group-era {
+  font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 700;
+  color: #999; flex: 0 0 auto; min-width: 0;
+}
+.locked-group-dots {
+  flex: 1; display: flex; flex-wrap: wrap; gap: 5px; align-items: center;
+}
+.locked-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1px dashed #d5d5d5; color: #ccc;
+  font-family: 'Unbounded', sans-serif; font-style: normal;
+  font-size: 10px; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.locked-group-count {
+  font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 13px;
+  color: #ddd; flex-shrink: 0;
+}
+
+@media (max-width: 560px) {
+  .locked-group { flex-wrap: wrap; gap: 6px 10px; }
+  .locked-group-era { flex: 1 1 100%; font-size: 11px; }
+  .locked-group-count { margin-left: auto; }
+}
+
+#figures-progress .progress-row { margin: 16px 0 0; }
+
+/* ---------- Timeline (horizontal) ---------- */
+.timeline-h { display: flex; gap: 0; overflow-x: auto; padding: 40px 4px 10px; position: relative; }
+.timeline-h::before { content: ""; position: absolute; left: 4px; right: 4px; top: 55px; height: 1px; background: var(--line); z-index: 0; }
+.timeline-h-item { position: relative; flex: 0 0 190px; padding: 0 16px; text-align: center; }
+/* --- Прогрес хронології --- */
+.progress-row { display: flex; align-items: center; gap: 14px; margin: 18px 0 -8px; flex-wrap: wrap; }
+.progress-text { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: .08em; }
+.progress-bar { flex: 1; min-width: 120px; max-width: 320px; height: 3px; background: #ddd; }
+.progress-fill { height: 100%; background: var(--ink); transition: width .4s ease; }
+
+.timeline-h-dot {
+  width: 15px; height: 15px; border-radius: 50%;
+  margin: 0 auto 14px; position: relative; z-index: 1;
+  padding: 0; display: flex; align-items: center; justify-content: center;
+  transition: transform .15s ease, background .15s ease;
+}
+.dot-filled { background: var(--ink); border: none; cursor: pointer; }
+.dot-filled:hover { transform: scale(1.35); }
+.dot-empty { background: transparent; border: 1.5px solid #ccc; cursor: default; }
+.dot-count { font-family: 'Manrope', sans-serif; font-size: 8px; font-weight: 700; color: #fff; line-height: 1; }
+.era-open .timeline-h-dot.dot-filled { transform: scale(1.5); background: var(--index-blue); }
+.era-has-books { background: rgba(0,0,0,.02); border-radius: 6px; }
+.era-open { background: rgba(0,87,183,.05); }
+
+/* --- Панель книг під стрічкою --- */
+.timeline-panel { display: none; margin-top: 22px; border-top: 1px solid var(--ink); padding-top: 18px; }
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; gap: 12px; }
+.panel-period { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .1em; margin-right: 10px; }
+.panel-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+.panel-close { background: none; border: 1px solid #ccc; width: 26px; height: 26px; cursor: pointer; font-size: 12px; color: #111; flex-shrink: 0; }
+.panel-close:hover { border-color: #111; background: rgba(0,0,0,.05); }
+
+.books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.book-card { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border: 1px solid var(--line); padding: 16px 18px; }
+.book-main { flex: 1; min-width: 0; }
+.book-cover {
+  width: 56px; height: auto; max-height: 96px; object-fit: contain;
+  flex-shrink: 0; display: block; align-self: flex-start;
+  border: 1px solid var(--line);
+  box-shadow: 2px 2px 0 rgba(0,0,0,.07);
+}
+.book-author { font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.book-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); line-height: 1.3; }
+.book-year { font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 12px; color: #aaa; }
+.book-note { font-family: 'Manrope', sans-serif; font-size: 12px; color: #777; margin-top: 6px; line-height: 1.4; }
+.book-meta { text-align: right; flex-shrink: 0; }
+.book-score { font-family: 'Unbounded', sans-serif; font-weight: 900; line-height: 1; white-space: nowrap; }
+.score-num { font-size: 24px; }
+.score-max { font-size: 11px; color: #bbb; font-weight: 500; }
+.score-high { color: var(--index-blue); }
+.score-mid  { color: var(--ink); }
+.score-low  { color: #999; }
+.score-none { color: #ccc; }
+.book-score-label { font-family: 'Manrope', sans-serif; font-size: 8.5px; color: #aaa; text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
+.book-meeting { font-family: 'Manrope', sans-serif; font-size: 10px; color: #bbb; margin-top: 6px; }
+
+@media (max-width: 560px) {
+  .books-grid { grid-template-columns: 1fr; }
+  .progress-bar { max-width: 100%; }
+}
+.timeline-h-period { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.06em; }
+.timeline-h-item h3 { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 16px; margin: 6px 0 8px; }
+.timeline-h-item p { font-size: 12px; margin: 0; color: #555; }
+.timeline-title-link { text-decoration: none; color: inherit; }
+.timeline-title-link h3 { color: var(--index-blue); }
+.timeline-title-link:hover h3 { text-decoration: underline; }
+@media (max-width: 700px) { .timeline-h-item { flex: 0 0 150px; } }
+
+/* ---------- Footer (emblem images) ---------- */
+footer { border-top: none; padding: 28px 0 40px; background: var(--paper-dark); }
+.footer-quote {
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--ink);
+  text-align: center;
+  margin: 0 0 28px;
+  letter-spacing: 0.005em;
+}
+.emblem-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.emblem-slot {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  padding: 14px;
+}
+.emblem-icon {
+  width: 84px; height: 84px; object-fit: contain;
+  mix-blend-mode: multiply;
+}
+@media (max-width: 700px) {
+  .emblem-icon { width: 60px; height: 60px; }
+  .emblem-slot { padding: 10px; }
+}
+@media (max-width: 420px) {
+  .emblem-icon { width: 46px; height: 46px; }
+  .emblem-footer { gap: 8px; }
+  .emblem-slot { padding: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+@media (max-width: 560px) {
+  .archive-item { flex-wrap: wrap; }
+}
