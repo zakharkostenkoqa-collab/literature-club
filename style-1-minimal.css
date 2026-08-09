@@ -233,7 +233,32 @@ section .section-num {
 .card-next-empty { display: flex; align-items: center; min-height: 90px; }
 .empty-note { color: #999; font-style: italic; margin: 0; }
 
-/* --- Емблема типу зустрічі --- */
+/* --- Верх картки: текст + акцентне зображення --- */
+.next-topic-top { margin-bottom: 4px; }
+.next-topic-top.has-visual {
+  display: grid;
+  grid-template-columns: 1fr 0.78fr;
+  gap: 30px;
+  align-items: stretch;
+}
+.next-topic-info { min-width: 0; }
+
+.next-topic-visual {
+  margin: 0; display: flex; flex-direction: column;
+  min-width: 0;
+}
+.next-topic-visual img {
+  width: 100%; height: 100%; min-height: 210px;
+  object-fit: cover; display: block;
+  border: 1px solid var(--line);
+}
+.next-topic-visual figcaption {
+  font-family: 'Manrope', sans-serif; font-size: 9.5px; font-weight: 500;
+  color: #aaa; letter-spacing: .06em; text-transform: uppercase;
+  margin-top: 8px; text-align: right;
+}
+
+/* --- Емблема типу зустрічі (мала іконка) --- */
 .meta-row-emblem {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
 }
@@ -242,11 +267,11 @@ section .section-num {
   color: var(--ink); opacity: .55; display: block;
 }
 .meeting-emblem svg { width: 100%; height: 100%; display: block; }
-.meeting-emblem-img {
-  flex-shrink: 0;
-  height: 64px; width: auto; max-width: 200px;
-  object-fit: contain; display: block;
-  margin: -12px 0;
+
+@media (max-width: 760px) {
+  .next-topic-top.has-visual { grid-template-columns: 1fr; gap: 20px; }
+  .next-topic-visual img { min-height: 0; max-height: 240px; }
+  .next-topic-visual figcaption { text-align: center; }
 }
 
 /* --- Next topic blocks list --- */
