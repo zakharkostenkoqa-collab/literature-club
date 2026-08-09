@@ -96,9 +96,9 @@ header.masthead {
 }
 .mini-avatar-name { font-family: 'Manrope', sans-serif; font-size: 10px; color: #777; margin-top: 6px; text-align: center; }
 .mini-avatar-ratinglabel {
-  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 7.5px;
-  text-transform: uppercase; letter-spacing: 0.1em;
-  color: #aaa; margin-top: 3px; text-align: center; line-height: 1;
+  font-family: 'Manrope', sans-serif; font-weight: 500; font-size: 7.5px;
+  text-transform: lowercase; letter-spacing: 0.06em;
+  color: #b0b0b0; margin-top: 3px; text-align: center; line-height: 1;
 }
 .mini-avatar-rating {
   font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 9px;
