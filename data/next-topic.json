@@ -3,6 +3,7 @@
   "meetingNumber": 2,
   "emblem": {
     "type": "history",
+    "src": "assets/emblems/history.jpg",
     "label": "Історична зустріч"
   },
   "date": "",
