@@ -795,7 +795,23 @@ async function openPresenter() {
       <button class="pres-nav" onclick="presNext()" title="→">›</button>
     </div>
     <div class="pres-question" id="pres-question" onclick="toggleQuestion()"></div>
-    <div class="pres-pointer" id="pres-pointer"></div>
+    <div class="pres-pointer" id="pres-pointer">
+      <svg class="pres-horse" viewBox="0 0 100 76" aria-hidden="true">
+        <g class="horse-body">
+          <ellipse cx="46" cy="38" rx="23" ry="12"/>
+          <path d="M62 30 L71 13 L77 7 L88 13 L91 20 L84 23 L75 21 L70 34 Z"/>
+          <path d="M73 12 L75 3 L79 11 Z"/>
+        </g>
+        <g class="horse-legs">
+          <path d="M60 44 L70 57 L66 65"/>
+          <path d="M55 46 L61 61 L57 69"/>
+          <path d="M33 44 L23 57 L27 65"/>
+          <path d="M28 46 L17 59 L21 67"/>
+          <path d="M25 31 Q9 27 5 43"/>
+        </g>
+        <circle class="horse-eye" cx="80" cy="15" r="1.6"/>
+      </svg>
+    </div>
     <div class="pres-result" id="pres-result"></div>`;
   document.body.appendChild(wrap);
   presenter.el = wrap;
@@ -880,8 +896,15 @@ function togglePointer() {
 function presMouse(e) {
   if (presenter.pointer) {
     const p = document.getElementById('pres-pointer');
+    const dx = e.clientX - (presenter.lastX ?? e.clientX);
+    if (Math.abs(dx) > 2) presenter.facingLeft = dx < 0;
+    presenter.lastX = e.clientX;
     p.style.left = e.clientX + 'px';
     p.style.top = e.clientY + 'px';
+    p.style.transform = presenter.facingLeft ? 'scaleX(-1)' : 'scaleX(1)';
+    p.classList.add('moving');
+    clearTimeout(presenter.horseStop);
+    presenter.horseStop = setTimeout(() => p.classList.remove('moving'), 220);
   }
   presenter.el.classList.remove('idle');
   clearTimeout(presenter.idleTimer);
