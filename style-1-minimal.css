@@ -788,18 +788,35 @@ footer { border-top: none; padding: 28px 0 40px; background: var(--paper-dark); 
 .pres-q-hint { font-size: 10px; color: #3f444b; margin-top: 28px; }
 
 /* --- Вказівка --- */
+/* --- Вказівка: княжий кінь --- */
 .pres-pointer {
   position: fixed; z-index: 20; pointer-events: none;
-  width: 30px; height: 30px; margin: -15px 0 0 -15px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,208,40,.95);
-  box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 0 10px rgba(255,208,40,.35);
+  width: 62px; height: 47px; margin: -24px 0 0 -31px;
   opacity: 0; transition: opacity .2s ease;
+  will-change: transform;
 }
-.pres-pointer::after {
-  content: ''; position: absolute; inset: 50% auto auto 50%;
-  width: 3px; height: 3px; margin: -1.5px 0 0 -1.5px;
-  border-radius: 50%; background: rgba(255,208,40,.95);
+.pres-horse {
+  width: 100%; height: 100%; display: block;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,.45));
+  transform-origin: 50% 70%;
+}
+.horse-body path, .horse-body ellipse {
+  fill: #d9a12a; stroke: #2b2317; stroke-width: 2.2;
+  stroke-linejoin: round;
+}
+.horse-legs path {
+  fill: none; stroke: #2b2317; stroke-width: 5.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.horse-eye { fill: #2b2317; }
+
+/* Біжить, поки миша рухається */
+.pres-pointer.moving .pres-horse { animation: horseTrot .42s infinite ease-in-out; }
+@keyframes horseTrot {
+  0%, 100% { transform: translateY(0)    rotate(0deg); }
+  25%      { transform: translateY(-2.5px) rotate(-3deg); }
+  50%      { transform: translateY(0)    rotate(0deg); }
+  75%      { transform: translateY(-1.5px) rotate(2deg); }
 }
 #presenter.pointer-on .pres-pointer { opacity: 1; }
 
