@@ -12,14 +12,14 @@
       "status": "ready"
     },
     {
-      "id": "rus-rich-pospolyta",
-      "label": "Русь → Річ Посполита",
-      "title": "Від Київської Русі до Речі Посполитої",
+      "id": "rus-lublin",
+      "label": "Русь → Люблінська унія",
+      "title": "Від Київської Русі до Люблінської унії",
       "author": "",
       "book": "Історичний період",
       "meeting": 2,
-      "file": "",
-      "status": "soon"
+      "file": "data/quizzes/rus-lublin.json",
+      "status": "ready"
     }
   ]
 }
