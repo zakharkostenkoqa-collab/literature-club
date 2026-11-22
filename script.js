@@ -230,7 +230,7 @@ function renderEraPanel(i) {
           <div class="hist-name">${p.name}</div>
           <div class="hist-years">${p.years}${p.role ? ` · ${p.role}` : ''}</div>
           ${p.note ? `<div class="hist-note">${p.note}</div>` : ''}
-          ${p.meeting ? `<div class="hist-meeting">історична зустріч № ${p.meeting}</div>` : ''}
+          ${p.meeting ? `<div class="hist-meeting">засідання № ${p.meeting}</div>` : ''}
         </div>
       </div>`;
   }).join('');
@@ -591,6 +591,64 @@ function renderMeetingEmblem(cfg) {
   return `<span class="meeting-emblem" title="${cfg.label || preset.label}">${preset.svg}</span>`;
 }
 
+/* ---------- Минулі зустрічі (архів) ---------- */
+const UA_MONTHS_GEN = ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня',
+  'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'];
+
+function fmtArchiveDate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || '');
+  if (!m) return iso || '';
+  return `${parseInt(m[3], 10)} ${UA_MONTHS_GEN[parseInt(m[2], 10) - 1]} ${m[1]}`;
+}
+
+const ARCHIVE_KIND_LABEL = { literature: 'Літературна зустріч', history: 'Історична зустріч' };
+let archiveFilter = 'all';
+let archiveMeetings = [];
+
+function paintArchive() {
+  const list = document.getElementById('archive-list');
+  const filters = document.getElementById('archive-filters');
+  if (!list || !filters) return;
+
+  const FILTERS = [['all', 'Усі'], ['literature', 'Літературні'], ['history', 'Історичні']];
+  filters.innerHTML = FILTERS.map(([key, label]) =>
+    `<button type="button" class="arch-filter${archiveFilter === key ? ' active' : ''}" data-filter="${key}">${label}</button>`
+  ).join('');
+  filters.querySelectorAll('.arch-filter').forEach(btn =>
+    btn.addEventListener('click', () => { archiveFilter = btn.dataset.filter; paintArchive(); }));
+
+  /* Номер зустрічі в межах свого типу: літературна № 1, 2… / історична № 1, 2… */
+  const byNumber = [...archiveMeetings].sort((a, b) => a.number - b.number);
+  const kindCount = {};
+  byNumber.forEach(m => { kindCount[m.kind] = (kindCount[m.kind] || 0) + 1; m._kindNo = kindCount[m.kind]; });
+
+  const shown = byNumber.filter(m => archiveFilter === 'all' || m.kind === archiveFilter).reverse();
+  if (!shown.length) { list.innerHTML = '<p class="arch-empty">Поки що немає зустрічей цього типу.</p>'; return; }
+
+  list.innerHTML = shown.map(m => {
+    const kindLabel = ARCHIVE_KIND_LABEL[m.kind];
+    const links = (m.links || []).filter(l => l && l.url)
+      .map(l => `<a class="arch-link" href="${l.url}" target="_blank" rel="noopener">${l.label || 'Матеріали'}</a>`).join('');
+    return `
+      <div class="arch-row">
+        <div class="arch-num">№&nbsp;${m.number}</div>
+        <div class="arch-date">${fmtArchiveDate(m.date)}</div>
+        ${MEETING_EMBLEMS[m.kind] ? renderMeetingEmblem({ type: m.kind }) : '<span class="meeting-emblem"></span>'}
+        <div class="arch-main">
+          <div class="arch-title">${m.title}</div>
+          ${kindLabel ? `<div class="arch-kind">${kindLabel} № ${m._kindNo}</div>` : ''}
+        </div>
+        ${links ? `<div class="arch-links">${links}</div>` : ''}
+      </div>`;
+  }).join('');
+}
+
+async function renderArchive() {
+  const data = await loadJSON('data/archive.json');
+  archiveMeetings = data.meetings || [];
+  paintArchive();
+}
+
 /* ---------- Наступна зустріч ---------- */
 async function renderNextTopic() {
   const data = await loadJSON('data/next-topic.json');
@@ -690,6 +748,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderFigures().catch(e => console.error(e));
   renderQuizSelector().catch(e => console.error(e));
   renderNextTopic().catch(e => console.error(e));
+  renderArchive().catch(e => console.error(e));
 });
 
 /* ============================================================
