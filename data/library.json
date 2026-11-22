@@ -10,6 +10,16 @@
       "score": 9.4,
       "cover": "assets/covers/tygrolovy.png",
       "note": ""
+    },
+    {
+      "authorId": "pidmohylnyi",
+      "title": "Місто",
+      "year": "1928",
+      "era": "Розстріляне відродження",
+      "meeting": 3,
+      "score": null,
+      "cover": "assets/covers/mysto.png",
+      "note": ""
     }
   ]
 }
