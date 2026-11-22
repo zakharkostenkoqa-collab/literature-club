@@ -11,7 +11,7 @@
       "initials": "ОЛ",
       "accent": "terracotta",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "volodymyr-velykyi",
@@ -23,7 +23,7 @@
       "initials": "ВВ",
       "accent": "blue",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "yaroslav-mudryi",
@@ -35,7 +35,7 @@
       "initials": "ЯМ",
       "accent": "yellow",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "volodymyr-monomakh",
@@ -47,7 +47,7 @@
       "initials": "ВМ",
       "accent": "teal",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "danylo-halytskyi",
@@ -59,7 +59,7 @@
       "initials": "ДГ",
       "accent": "blue",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "roman-mstyslavych",
@@ -71,7 +71,7 @@
       "initials": "РМ",
       "accent": "terracotta",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "kostiantyn-ostrozkyi",
@@ -83,7 +83,7 @@
       "initials": "КО",
       "accent": "yellow",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "ivan-fedorov",
@@ -95,7 +95,7 @@
       "initials": "ІФ",
       "accent": "teal",
       "image": "",
-      "meeting": 1
+      "meeting": 2
     },
     {
       "id": "petro-sahaidachnyi",
@@ -107,7 +107,7 @@
       "initials": "ПС",
       "accent": "blue",
       "image": "",
-      "meeting": 2
+      "meeting": 4
     },
     {
       "id": "bohdan-khmelnytskyi",
@@ -119,7 +119,7 @@
       "initials": "БХ",
       "accent": "terracotta",
       "image": "",
-      "meeting": 2
+      "meeting": 4
     },
     {
       "id": "petro-doroshenko",
@@ -131,7 +131,7 @@
       "initials": "ПД",
       "accent": "yellow",
       "image": "",
-      "meeting": 2
+      "meeting": 4
     },
     {
       "id": "ivan-mazepa",
@@ -143,7 +143,7 @@
       "initials": "ІМ",
       "accent": "teal",
       "image": "",
-      "meeting": 2
+      "meeting": 4
     },
     {
       "id": "kyrylo-rozumovskyi",
@@ -155,7 +155,7 @@
       "initials": "КР",
       "accent": "blue",
       "image": "",
-      "meeting": 2
+      "meeting": 4
     }
   ]
 }
