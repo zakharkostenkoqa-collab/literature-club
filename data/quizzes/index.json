@@ -20,6 +20,26 @@
       "meeting": 2,
       "file": "data/quizzes/rus-lublin.json",
       "status": "ready"
+    },
+    {
+      "id": "misto",
+      "label": "Місто",
+      "title": "Перевірка на мешканця міста",
+      "author": "Валер'ян Підмогильний",
+      "book": "Місто",
+      "meeting": 3,
+      "file": "data/quizzes/misto.json",
+      "status": "ready"
+    },
+    {
+      "id": "kozaky-sich",
+      "label": "Козаки → кінець Січі",
+      "title": "Від козацьких витоків до кінця Січі",
+      "author": "",
+      "book": "Історичний період",
+      "meeting": 4,
+      "file": "data/quizzes/kozaky-sich.json",
+      "status": "ready"
     }
   ]
 }
