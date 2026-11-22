@@ -159,6 +159,13 @@ let timelineData = null;
 let libraryData = null;
 let figuresData = null;
 let openEraIndex = null;
+let historyData = null;
+
+/* Історичні постаті певної епохи (data/history-figures.json) */
+function historyOfEra(eraTitle) {
+  if (!historyData || !historyData.people) return [];
+  return historyData.people.filter(p => p.era === eraTitle);
+}
 
 /* Книги певної епохи з бібліотеки */
 function booksOfEra(eraTitle) {
@@ -211,6 +218,23 @@ function renderEraPanel(i) {
       </div>`;
   }).join('');
 
+  const people = historyOfEra(era.title);
+  const peopleHTML = people.map(p => {
+    const avatar = p.image
+      ? `<img class="hist-avatar hist-avatar-photo" src="${p.image}" alt="${p.name}">`
+      : `<div class="hist-avatar accent-${p.accent || 'blue'}">${p.initials || ''}</div>`;
+    return `
+      <div class="hist-card accent-${p.accent || 'blue'}">
+        ${avatar}
+        <div class="hist-body">
+          <div class="hist-name">${p.name}</div>
+          <div class="hist-years">${p.years}${p.role ? ` · ${p.role}` : ''}</div>
+          ${p.note ? `<div class="hist-note">${p.note}</div>` : ''}
+          ${p.meeting ? `<div class="hist-meeting">історична зустріч № ${p.meeting}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
   panel.innerHTML = `
     <div class="panel-head">
       <div>
@@ -219,7 +243,12 @@ function renderEraPanel(i) {
       </div>
       <button class="panel-close" onclick="closeEraPanel()" title="Згорнути">✕</button>
     </div>
-    <div class="books-grid">${booksHTML}</div>`;
+    ${books.length ? `<div class="books-grid">${booksHTML}</div>` : ''}
+    ${people.length ? `
+      <div class="hist-section${books.length ? ' hist-section-after' : ''}">
+        <div class="hist-heading">Постаті епохи</div>
+        <div class="hist-grid">${peopleHTML}</div>
+      </div>` : ''}`;
   panel.style.display = 'block';
 }
 
@@ -240,14 +269,16 @@ function toggleEra(i) {
 }
 
 async function renderTimeline() {
-  const [tl, lib, figs] = await Promise.all([
+  const [tl, lib, figs, hist] = await Promise.all([
     loadJSON('data/timeline.json'),
     loadJSON('data/library.json'),
-    loadJSON('data/figures.json')
+    loadJSON('data/figures.json'),
+    loadJSON('data/history-figures.json').catch(() => ({ people: [] }))
   ]);
   timelineData = tl;
   libraryData = lib;
   figuresData = figs;
+  historyData = hist;
 
   const box = document.getElementById('timeline-content');
   const eras = tl.eras;
@@ -268,10 +299,14 @@ async function renderTimeline() {
   box.innerHTML = eras.map((e, i) => {
     const count = booksOfEra(e.title).length;
     const has = count > 0;
+    const hasHist = historyOfEra(e.title).length > 0;
+    const clickable = has || hasHist;
+    const dotClass = has ? ' dot-filled' : (hasHist ? ' dot-history' : ' dot-empty');
+    const dotTitle = has ? 'Показати прочитане' : 'Показати постаті епохи';
     return `
-    <div class="timeline-h-item${has ? ' era-has-books' : ''}">
-      <button class="timeline-h-dot${has ? ' dot-filled' : ' dot-empty'}"
-        ${has ? `onclick="toggleEra(${i})" title="Показати прочитане"` : 'disabled title="Ще не читали"'}
+    <div class="timeline-h-item${has ? ' era-has-books' : ''}${hasHist ? ' era-has-history' : ''}">
+      <button class="timeline-h-dot${dotClass}"
+        ${clickable ? `onclick="toggleEra(${i})" title="${dotTitle}"` : 'disabled title="Ще не читали"'}
         aria-label="${e.title}">${has && count > 1 ? `<span class="dot-count">${count}</span>` : ''}</button>
       <div class="timeline-h-period">${e.period}</div>
       ${e.link
